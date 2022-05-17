@@ -17,9 +17,9 @@ namespace MKengine
 		size_t width = 0;
 		size_t height = 0;
 
-		SDL_Window* window = nullptr;			
+		SDL_Window* window = nullptr;
 
-		SDL_GLContext gl_context;				
+		SDL_GLContext gl_context;
 
 		Window(const std::string& title, size_t  width, size_t height, bool fullscreen = false);
 

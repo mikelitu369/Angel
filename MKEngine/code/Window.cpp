@@ -1,9 +1,12 @@
 
 
+
+#pragma once
+
 #include <iostream>
 #include <Window.hpp>
 #include <cassert>
-#include <OpenGL.hpp>
+//#include <OpenGL.hpp>
 #include <SDL.h>
 //#include <kernel.hpp>
 //#include <keyboard.hpp>
@@ -14,7 +17,6 @@ namespace MKengine
 {
 	Window::Window(const std::string& title, size_t width, size_t height, bool fullscreen)
 	{
-		exit = false;
 		gl_context = nullptr;
 
 		this->width = width;
@@ -38,7 +40,6 @@ namespace MKengine
 		}
 		else
 		{
-			surface = SDL_GetWindowSurface(window);
 			gl_context = SDL_GL_CreateContext(window);
 
 			assert(gl_context != nullptr);
@@ -68,7 +69,6 @@ namespace MKengine
 		{
 			if (event.type == SDL_QUIT)
 			{
-				exit = true;
 				Kernel::instance().stop_kernel();
 			}
 
