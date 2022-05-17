@@ -3,19 +3,20 @@
 #include <ciso646>
 #include <memory>
 #include <vector>
-#include <Box2D/Box2D.h>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
+#include <SDL.h>
 
-using namespace sf;
-using namespace std;
+#undef main
+
+
 
 int main()
 {
-	constexpr auto window_width = 800u;
-	constexpr auto window_height = 600u;
+	int width = 800;
+	int height = 800;
 
-	RenderWindow window(VideoMode(window_width, window_height), "Box2D Forces", Style::Titlebar | Style::Close, ContextSettings(32));
+	SDL_Window* window = SDL_CreateWindow("ClantaPocho", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, int(width), int(height), SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+
+
 
 	return 0;
 }
