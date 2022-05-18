@@ -29,9 +29,7 @@ namespace MKengine
 
 	Entity* Scene::get_entity(const std::string& id)
 	{
-
 		return entities[id];
-
 	}
 
 

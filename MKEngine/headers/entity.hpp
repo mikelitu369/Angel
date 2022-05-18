@@ -5,7 +5,7 @@
 
 #include <vector>
 #include <iostream>
-//#include "component.hpp"
+#include <component.hpp>
 
 
 namespace MKengine
@@ -20,30 +20,32 @@ namespace MKengine
 
 		std::string id;							
 
-		//->std::vector<Component*> components;		
+		std::vector<Component*> components;		
 
-		Transform* transform = nullptr;			
+		Transform* transform = nullptr;		
+
+		bool active;
+
 
 
 	public:
 
 		Entity(Scene* scene);
 		Entity(std::string& id, Scene* scene);
-		Entity(std::string& id, Scene* scene, Transform* transform);
+		Entity(std::string& id, Scene* scene, Transform* parent);
 
 
-		//->void add_component(Component* new_component);
-
-
-		void add_transform(Transform* new_component);
+		void add_component(Component* new_component);
 
 		Transform* get_transform();
-
 
 		template< typename T >
 		T* get_component();
 		
 		std::string* get_id();
+
+		void set_active(bool state);
+
 	};
 }
 

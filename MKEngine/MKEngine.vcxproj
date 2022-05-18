@@ -22,11 +22,14 @@
     <ClCompile Include="code\entity.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\scene.cpp" />
+    <ClCompile Include="code\transform.cpp" />
     <ClCompile Include="code\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\component.hpp" />
     <ClInclude Include="headers\entity.hpp" />
     <ClInclude Include="headers\scene.hpp" />
+    <ClInclude Include="headers\transform.hpp" />
     <ClInclude Include="headers\window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

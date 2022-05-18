@@ -5,6 +5,7 @@
 #include <window.hpp>
 #include <scene.hpp>
 #include <entity.hpp>
+#include <transform.hpp>
 
 
 #undef main
@@ -18,14 +19,21 @@ int main()
 	int height = 800;
 
 
-	Window ventana = Window("prueba", width, height);
+	Window ventana("prueba", width, height);
 
-	Scene escena = Scene("default scene", ventana);
+	Scene escena("default scene", ventana);
 
-	for (size_t i = 0; i < 10; i++)
-	{
-		Entity entidad = Entity(&escena);
-	}
+	Entity entidad(&escena);
+
+	Vector3 movimiento(1, 1, 1);
+
+	entidad.get_transform()->print_position();
+
+	entidad.get_transform()->translate(movimiento);
+
+	entidad.get_transform()->print_position();
+
+	
 
 	while (true) {}
 

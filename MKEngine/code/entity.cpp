@@ -1,7 +1,7 @@
 
 
 #include <entity.hpp>
-//#include <transform.hpp>
+#include <transform.hpp>
 #include <scene.hpp>
 
 namespace MKengine
@@ -10,9 +10,8 @@ namespace MKengine
 	{
 		id = "";
 
-		/*
-			Añadir aqui una inclusion de transform forzada reseteado a cero
-		*/
+		this->transform = new Transform();
+		add_component(transform);
 
 		scene->add_entity(this);
 	}
@@ -21,34 +20,29 @@ namespace MKengine
 	{
 		this->id = id;
 
-		/*
-			Añadir aqui una inclusion de transform forzada reseteado a cero
-		*/
+		this->transform = new Transform();
+		add_component(transform);
 
 		scene->add_entity(this);
 	}
 
-	Entity::Entity(std::string& id, Scene* scene, Transform* transform)
+	Entity::Entity(std::string& id, Scene* scene, Transform* parent)
 	{
 		this->id = id;
 
-		this->transform = transform;
-		//->add_component(transform);
+		this->transform = new Transform(parent);
+		add_component(transform);
 
 		scene->add_entity(this);
 	}
 
-
-	/*
+	
 	void Entity::add_component(Component* new_component)
 	{
+		new_component->set_entity(this);
 		components.push_back(new_component);
-	}
-	*/
-	void Entity::add_transform(Transform* new_component)
-	{
-		transform = new_component;
-	}
+	}	
+
 
 	Transform* Entity::get_transform()
 	{
@@ -58,7 +52,7 @@ namespace MKengine
 	template< typename T >
 	T* Entity::get_component()
 	{
-		/*for (auto& component : components)
+		for (auto& component : components)
 		{
 			auto casted_component = dynamic_cast<T*>(component);
 
@@ -66,7 +60,7 @@ namespace MKengine
 			{
 				return casted_component;
 			}
-		}*/
+		}
 
 		return nullptr;
 	}
@@ -74,5 +68,10 @@ namespace MKengine
 	std::string* Entity::get_id() 
 	{
 		return &id;
+	}
+
+	void Entity::set_active(bool state)
+	{
+		this->active = state;
 	}
 }
