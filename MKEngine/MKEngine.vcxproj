@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\main.cpp" />
+    <ClCompile Include="code\scene.cpp" />
     <ClCompile Include="code\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\scene.hpp" />
     <ClInclude Include="headers\window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -126,13 +128,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\MKEngine\headers;$(SolutionDir)..\libraries\sdl2-vs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\MKEngine\headers;$(SolutionDir)..\libraries\sdl2-vs\include;$(SolutionDir)..\libraries\opengl-toolkit\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\libraries\sdl2-vs\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2d.lib;Setupapi.lib;Version.lib;imm32.lib;winmm.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\libraries\sdl2-vs\lib\x64;$(SolutionDir)..\libraries\opengl-toolkit\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2d.lib;Setupapi.lib;Version.lib;imm32.lib;winmm.lib;opengl32.lib;opengl-toolkit-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
   </ItemDefinitionGroup>

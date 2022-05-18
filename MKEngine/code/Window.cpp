@@ -6,16 +6,13 @@
 #include <iostream>
 #include <Window.hpp>
 #include <cassert>
-//#include <OpenGL.hpp>
+#include <OpenGL.hpp>
 #include <SDL.h>
-//#include <kernel.hpp>
-//#include <keyboard.hpp>
-//#include <scene_manager.hpp>
-//#include <scene.hpp>
+
 
 namespace MKengine
 {
-	Window::Window(const std::string& title, size_t width, size_t height, bool fullscreen)
+	Window::Window(const std::string& title, size_t width, size_t height)
 	{
 		gl_context = nullptr;
 
@@ -42,15 +39,7 @@ namespace MKengine
 		{
 			gl_context = SDL_GL_CreateContext(window);
 
-			assert(gl_context != nullptr);
-
-			if (gl_context && glt::initialize_opengl_extensions())
-			{
-				if (fullscreen)
-				{
-					SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-				}
-			}
+			assert(gl_context != nullptr);			
 		}
 	}
 
@@ -60,33 +49,7 @@ namespace MKengine
 		SDL_Quit();
 	}
 
-	void Window::handle_events()
-	{
-		SDL_Event event;
 
-		//Get the event from sdl
-		while (SDL_PollEvent(&event) > 0)
-		{
-			if (event.type == SDL_QUIT)
-			{
-				Kernel::instance().stop_kernel();
-			}
-
-			//We send a message to the scene dispatcher
-			if (event.type == SDL_KEYDOWN)
-			{
-				//Create the message
-				Message* new_input_message = new Message(Keyboard::instance().sdlk_to_string(event.key.keysym.sym) + "_keydown");
-				Scene_manager::instance().current_scene->dispatcher->multicast(*new_input_message);
-			}
-			if (event.type == SDL_KEYUP)
-			{
-				//Create the message
-				Message* new_input_message = new Message(Keyboard::instance().sdlk_to_string(event.key.keysym.sym) + "_keyup");
-				Scene_manager::instance().current_scene->dispatcher->multicast(*new_input_message);
-			}
-		}
-	}
 
 	void Window::clear() const
 	{
@@ -98,22 +61,30 @@ namespace MKengine
 		if (gl_context) SDL_GL_SwapWindow(window);
 	}
 
-	unsigned Window::get_width() const
+	unsigned Window::get_width()
 	{
-		int width = 0, height;
+		recalculate_width_and_height();
 
-		if (window) SDL_GetWindowSize(window, &width, &height);
-
-		return unsigned(width);
+		return unsigned(this->width);
 	}
 
-	unsigned Window::get_height() const
+	unsigned Window::get_height()
 	{
-		int width, height = 0;
+		recalculate_width_and_height();
 
-		if (window) SDL_GetWindowSize(window, &width, &height);
-
-		return unsigned(height);
+		return unsigned(this->height);
 	}
 
+	void Window::recalculate_width_and_height()
+	{
+		int width = 0, height = 0;
+
+		if (window)
+		{
+			SDL_GetWindowSize(window, &width, &height);
+			this->width = (unsigned)width;
+			this->height = (unsigned)height;
+		}
+
+	}
 }
