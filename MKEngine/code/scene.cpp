@@ -8,10 +8,9 @@ using namespace std;
 
 namespace MKengine
 {
-	Scene::Scene(const std::string& name, const std::string& path, Window& window)
+	Scene::Scene(const std::string& name,  Window& window)
 	{
 		this->name = name;
-		this->path = path;
 
 
 		//->Scene_manager::instance().add_scene(this);
@@ -49,7 +48,7 @@ namespace MKengine
 
 	void Scene::assert_entity_id(std::string* id) 
 	{
-		if (entities[*id] != nullptr) 
+		if (entities.find(*id) != entities.end()) 
 		{
 			unsigned iterator = 0;
 			std::string base;
@@ -58,9 +57,9 @@ namespace MKengine
 				++iterator;
 				base = *id + std::to_string(iterator);
 			
-			} while (entities[base] != nullptr);
+			} while (entities.find(base) != entities.end());
 
 			*id = base;
 		}
-	}
+	}	
 }

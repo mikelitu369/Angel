@@ -5,10 +5,10 @@
 
 #include <vector>
 #include <iostream>
-#include "component.hpp"
+//#include "component.hpp"
 
 
-namespace engine
+namespace MKengine
 {
 	class Transform;
 	class Scene;
@@ -20,7 +20,7 @@ namespace engine
 
 		std::string id;							
 
-		std::vector<Component*> components;		
+		//->std::vector<Component*> components;		
 
 		Transform* transform = nullptr;			
 
@@ -32,7 +32,7 @@ namespace engine
 		Entity(std::string& id, Scene* scene, Transform* transform);
 
 
-		void add_component(Component* new_component);
+		//->void add_component(Component* new_component);
 
 
 		void add_transform(Transform* new_component);

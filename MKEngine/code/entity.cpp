@@ -1,7 +1,7 @@
 
 
 #include <entity.hpp>
-#include <transform.hpp>
+//#include <transform.hpp>
 #include <scene.hpp>
 
 namespace MKengine
@@ -33,23 +33,18 @@ namespace MKengine
 		this->id = id;
 
 		this->transform = transform;
-		add_component(transform);
+		//->add_component(transform);
 
 		scene->add_entity(this);
 	}
 
-	Entity::Entity(std::string& id)
-	{
-		this->id = id;
 
-		this->transform = nullptr;
-	}
-
+	/*
 	void Entity::add_component(Component* new_component)
 	{
 		components.push_back(new_component);
 	}
-
+	*/
 	void Entity::add_transform(Transform* new_component)
 	{
 		transform = new_component;
@@ -63,7 +58,7 @@ namespace MKengine
 	template< typename T >
 	T* Entity::get_component()
 	{
-		for (auto& component : components)
+		/*for (auto& component : components)
 		{
 			auto casted_component = dynamic_cast<T*>(component);
 
@@ -71,7 +66,7 @@ namespace MKengine
 			{
 				return casted_component;
 			}
-		}
+		}*/
 
 		return nullptr;
 	}

@@ -29,14 +29,13 @@ namespace MKengine
 		//->std::unique_ptr <Physics2d_System>   physics2d_system;
 
 		std::string name;									
-		std::string path;	
 
 		void assert_entity_id(std::string*);
 
 	public:
 
 
-		Scene(const std::string& name, const std::string& path, Window& window);
+		Scene(const std::string& name, Window& window);
 
 	
 		void init();
@@ -57,8 +56,7 @@ namespace MKengine
 		std::string get_name()
 		{
 			return name;
-		}		
-
+		}
 	};
 
 
