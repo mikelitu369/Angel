@@ -18,8 +18,8 @@ namespace MKengine
 
 		void set_entity(Entity* const reference)
 		{
-			entity = reference;			
-		}
+			this->entity = reference;
+		};
 	};
 
 }
