@@ -1,14 +1,12 @@
 
 
 #include <scene.hpp>
-#include <fstream>
 #include <sstream>
-#include <iostream>
 
 
 using namespace std;
 
-namespace engine
+namespace MKengine
 {
 	Scene::Scene(const std::string& name, const std::string& path, Window& window)
 	{
@@ -22,20 +20,12 @@ namespace engine
 		//->control_system.reset(new Control_System);
 		//->collision_system.reset(new Collision_System);
 	}
-
-	void Scene::init()
-	{
-		ifstream file(path);
-		stringstream buffer;
-		buffer << file.rdbuf();
-		file.close();
-		std::string content(buffer.str());
-
-	}	
+	
 
 	void Scene::add_entity(Entity* new_entity)
 	{
-		entities.insert(std::pair<Id, Entity*>(new_entity->id, new_entity));
+		assert_entity_id(new_entity->get_id());
+		entities.insert(std::pair<std::string, Entity*>(*new_entity->get_id(), new_entity));
 	}
 
 	Entity* Scene::get_entity(const std::string& id)
@@ -57,4 +47,20 @@ namespace engine
 		//->renderer_system->run(0);
 	}
 
+	void Scene::assert_entity_id(std::string* id) 
+	{
+		if (entities[*id] != nullptr) 
+		{
+			unsigned iterator = 0;
+			std::string base;
+			do
+			{
+				++iterator;
+				base = *id + std::to_string(iterator);
+			
+			} while (entities[base] != nullptr);
+
+			*id = base;
+		}
+	}
 }

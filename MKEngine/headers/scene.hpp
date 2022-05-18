@@ -1,4 +1,5 @@
 
+#pragma once
 
 #include <iostream>
 #include <map>
@@ -11,19 +12,16 @@
 //#include <control_system.hpp>
 //#include <collision_system.hpp>
 
-#pragma once
 
-namespace engine
+namespace MKengine
 {
-	class Window;
-
-	typedef std::string Id;
+	class Window;	
 
 	class Scene
 	{
 	private:
 
-		std::map<Id, Entity* > entities;
+		std::map<std::string, Entity* > entities;
 
 		//->std::unique_ptr <Renderer_System>	 renderer_system;		
 		//->std::unique_ptr <Control_System>	 control_system;		
@@ -31,7 +29,9 @@ namespace engine
 		//->std::unique_ptr <Physics2d_System>   physics2d_system;
 
 		std::string name;									
-		std::string path;		
+		std::string path;	
+
+		void assert_entity_id(std::string*);
 
 	public:
 
@@ -57,7 +57,7 @@ namespace engine
 		std::string get_name()
 		{
 			return name;
-		}
+		}		
 
 	};
 
