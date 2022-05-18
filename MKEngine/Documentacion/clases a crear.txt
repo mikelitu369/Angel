@@ -14,11 +14,11 @@ controller
 
 *Collision_handler
 
-Entity
+->Entity
 Kernel
-Scene
+->Scene
 SceneManager
-Window
+->Window
 
 
 SYSTEMS:
