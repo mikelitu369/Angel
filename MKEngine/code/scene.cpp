@@ -15,7 +15,7 @@ namespace MKengine
 
 		//->Scene_manager::instance().add_scene(this);
 
-		//->renderer_system.reset(new Renderer_System(window));
+		//renderer_system.reset(new Renderer_System(window));
 		//->control_system.reset(new Control_System);
 		//->collision_system.reset(new Collision_System);
 	}
@@ -41,7 +41,7 @@ namespace MKengine
 
 	void Scene::render()
 	{
-		//->renderer_system->run(0);
+		//renderer_system->run(0);
 	}
 
 	void Scene::assert_entity_id(std::string* id) 

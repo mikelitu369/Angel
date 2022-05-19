@@ -8,7 +8,8 @@
 
 #include "entity.hpp"
 //#include "scene_manager.hpp"
-//#include <render_component.hpp>
+#include <render_component.hpp>
+#include <render_system.hpp>
 //#include <control_system.hpp>
 //#include <collision_system.hpp>
 
@@ -35,10 +36,7 @@ namespace MKengine
 	public:
 
 
-		Scene(const std::string& name, Window& window);
-
-	
-		void init();
+		Scene(const std::string& name, Window& window);	
 
 
 		void update(float time);

@@ -2,19 +2,20 @@
 
 #include <Model.hpp>
 #include <Model_Obj.hpp>
+#include <render_system.hpp>
+#include <render_component.hpp>
 
-namespace engine
+namespace MKengine
 {
 	class Mesh_Component : public Render_Component
 	{
 
-		~Mesh_Component() = default;
 
 	public:
 
 		std::shared_ptr< glt::Model > model = nullptr;
 
-		Mesh_Component(Entity* e, const std::string&, Renderer_System&);
+		Mesh_Component(const std::string& path, Renderer_System& render_system);
 
 		
 		glt::Node& get_node() override

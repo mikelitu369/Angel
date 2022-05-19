@@ -3,9 +3,10 @@
 #pragma once
 
 #include <component.hpp>
+#include <Model.hpp>
 
 
-namespace engine
+namespace MKengine
 {
 	class Render_Component : public Component
 	{

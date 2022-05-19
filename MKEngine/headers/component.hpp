@@ -20,6 +20,8 @@ namespace MKengine
 		{
 			this->entity = reference;
 		};
+
+		Entity* get_entity() const { return entity; }
 	};
 
 }
