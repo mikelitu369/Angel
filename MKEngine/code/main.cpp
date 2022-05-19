@@ -38,9 +38,9 @@ int main()
 
 	Renderer_System render_system(ventana);
 
-	//Mesh_Component cube("../models/cobe.obj", render_system);
+	Mesh_Component cube("../models/cobe.obj", render_system);
 
-	//entidad.add_component(&cube);
+	entidad.add_component(&cube);
 
 	Kernel* kernel = new Kernel();
 

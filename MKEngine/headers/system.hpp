@@ -12,16 +12,8 @@ namespace MKengine
 
 	public:
 
-		Scene* scene;							
-
-		std::vector<Component*> components;		
-
-
 		void initialize() {}
-		void run(float time);
+		void run(float time) {}
 		void end() {}
-
-
-		void add_component(Component*);
 	};
 }

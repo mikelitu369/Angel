@@ -24,7 +24,7 @@ namespace MKengine
 
 		std::map<std::string, Entity* > entities;
 
-		//->std::unique_ptr <Renderer_System>	 renderer_system;		
+		std::unique_ptr <Renderer_System>	 renderer_system;		
 		//->std::unique_ptr <Control_System>	 control_system;		
 		//->std::unique_ptr <Collision_System>	 collision_system;		
 		//->std::unique_ptr <Physics2d_System>   physics2d_system;

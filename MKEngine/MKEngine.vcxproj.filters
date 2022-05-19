@@ -33,9 +33,6 @@
     <ClCompile Include="code\mesh_component.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="code\system.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="code\render_system.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>

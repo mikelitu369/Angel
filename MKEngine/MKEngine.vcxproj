@@ -25,7 +25,6 @@
     <ClCompile Include="code\mesh_component.cpp" />
     <ClCompile Include="code\render_system.cpp" />
     <ClCompile Include="code\scene.cpp" />
-    <ClCompile Include="code\system.cpp" />
     <ClCompile Include="code\transform.cpp" />
     <ClCompile Include="code\window.cpp" />
   </ItemGroup>
