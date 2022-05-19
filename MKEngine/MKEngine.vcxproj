@@ -28,6 +28,8 @@
   <ItemGroup>
     <ClInclude Include="headers\component.hpp" />
     <ClInclude Include="headers\entity.hpp" />
+    <ClInclude Include="headers\mesh_component.hpp" />
+    <ClInclude Include="headers\render_component.hpp" />
     <ClInclude Include="headers\scene.hpp" />
     <ClInclude Include="headers\transform.hpp" />
     <ClInclude Include="headers\window.hpp" />
