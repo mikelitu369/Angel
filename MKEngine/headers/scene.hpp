@@ -7,45 +7,42 @@
 
 
 #include "entity.hpp"
-//#include "scene_manager.hpp"
+#include "scene_manager.hpp"
 #include <render_component.hpp>
 #include <render_system.hpp>
-//#include <control_system.hpp>
-//#include <collision_system.hpp>
+#include <kernel.hpp>
 
 
 namespace MKengine
 {
 	class Window;	
 
+	class Renderer_System;
+
 	class Scene
 	{
-	private:
+	protected:
 
 		std::map<std::string, Entity* > entities;
 
-		std::unique_ptr <Renderer_System>	 renderer_system;		
-		//->std::unique_ptr <Control_System>	 control_system;		
-		//->std::unique_ptr <Collision_System>	 collision_system;		
-		//->std::unique_ptr <Physics2d_System>   physics2d_system;
+		std::unique_ptr <Kernel> kernel;
+		std::unique_ptr <Renderer_System> renderer_system;
 
 		std::string name;									
 
 		void assert_entity_id(std::string*);
 
+		virtual void setup();
+
+		void init();
+
 	public:
 
 
-		Scene(const std::string& name, Window& window);	
+		Scene(const std::string& name, Window& window);
 
 
-		void update(float time);
-
-
-		void render();
-
-
-		void add_entity(Entity*);
+		void add_entity(Entity* entity);
 
 
 		Entity* get_entity(const std::string&);
@@ -55,6 +52,8 @@ namespace MKengine
 		{
 			return name;
 		}
+
+		void load();
 	};
 
 

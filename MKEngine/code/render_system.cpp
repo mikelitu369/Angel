@@ -5,15 +5,18 @@
 #include <entity.hpp>
 #include <transform.hpp>
 #include <scene.hpp>
+#include <mesh_component.hpp>
+#include <camera_component.hpp>
 
 using namespace glt;
 
 namespace MKengine
 {
-	Renderer_System::Renderer_System(Window& w)
+	Renderer_System::Renderer_System(Window& window, Kernel & kernel)
 	{
-		window = &w;
+		this->window = &window;
 		render_node.reset(new Render_Node);
+		kernel.add_task(this);
 	}
 
 	void Renderer_System::run(float time = 0)
@@ -25,13 +28,12 @@ namespace MKengine
 
 		glViewport(0, 0, width, height);
 
-		//Go throw the all render components
 		for (auto& component : render_components)
 		{
 			if (component)
 			{
 				Matrix44 transform_matrix = component->get_entity()->get_transform()->get_transform_matrix();
-				component->get_node().set_transformation(transform_matrix);
+				component->get_node()->set_transformation(transform_matrix);
 			}
 		}
 
@@ -43,5 +45,36 @@ namespace MKengine
 	void Renderer_System::add_render_component(Render_Component* new_component)
 	{
 		render_components.push_back(new_component);
+	}
+
+	void Renderer_System::initialize()
+	{
+
+	}
+
+	std::shared_ptr<Render_Component> Renderer_System::create_mesh(const std::string& id, const std::string& path)
+	{
+		std::shared_ptr<Mesh_Component> component;
+		component.reset(new Mesh_Component(path));
+
+
+		this->render_node->add(id, component.get()->get_node());
+
+		this->add_render_component(component.get());
+
+		return component;
+	}
+
+	std::shared_ptr<Render_Component> Renderer_System::create_camera(const std::string& id)
+	{
+		std::shared_ptr<Camera_Component> component;
+		component.reset(new Camera_Component(id));
+
+
+		this->render_node->add(id, component.get()->get_node());
+
+		this->add_render_component(component.get());
+
+		return component;
 	}
 }

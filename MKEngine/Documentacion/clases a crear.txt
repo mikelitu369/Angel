@@ -5,19 +5,19 @@ COMPNENTS:
 box_collider
 camera
 collider
-component
+->component
 light_component
-mesh_component
-render_component
-transform
+->mesh_component
+->render_component
+->transform
 controller
 
 *Collision_handler
 
 ->Entity
-Kernel
+->Kernel
 ->Scene
-SceneManager
+->SceneManager
 ->Window
 
 
@@ -25,15 +25,15 @@ SYSTEMS:
 
 Collision_system
 Control_system
-Render_system
-System
+->Render_system
+->System
 
 
 TASKS:
 
 ReadInput
-Render
-Task
+->Render
+->Task
 Update
 
 

@@ -12,8 +12,8 @@ namespace MKengine
 
 	public:
 
-		void initialize() {}
-		void run(float time) {}
-		void end() {}
+		virtual void initialize() = 0;
+		virtual void run(float time) = 0;
+		virtual void end() = 0;
 	};
 }

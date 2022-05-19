@@ -12,7 +12,7 @@ namespace MKengine
 	{
 	public:
 
-		virtual glt::Node& get_node() = 0;
+		virtual std::shared_ptr<glt::Node> get_node() = 0;
 
 	};
 }

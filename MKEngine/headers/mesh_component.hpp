@@ -10,17 +10,17 @@ namespace MKengine
 	class Mesh_Component : public Render_Component
 	{
 
+		std::shared_ptr< glt::Model > model = nullptr;
 
 	public:
 
-		std::shared_ptr< glt::Model > model = nullptr;
 
-		Mesh_Component(const std::string& path, Renderer_System& render_system);
+		Mesh_Component(const std::string& path);
 
 		
-		glt::Node& get_node() override
+		std::shared_ptr<glt::Node> get_node() override
 		{
-			return *model;
+			return model;
 		}
 	};
 }

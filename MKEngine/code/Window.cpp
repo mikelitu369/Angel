@@ -9,7 +9,6 @@
 #include <OpenGL.hpp>
 #include <SDL.h>
 
-
 namespace MKengine
 {
 	Window::Window(const std::string& title, size_t width, size_t height)
@@ -39,7 +38,9 @@ namespace MKengine
 		{
 			gl_context = SDL_GL_CreateContext(window);
 
-			assert(gl_context != nullptr);			
+			assert(gl_context != nullptr);		
+
+			glt::initialize_opengl_extensions();
 		}
 	}
 

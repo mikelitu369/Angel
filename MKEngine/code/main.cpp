@@ -3,12 +3,14 @@
 #include <memory>
 #include <vector>
 #include <window.hpp>
-#include <scene.hpp>
+#include <default_scene.hpp>
 #include <entity.hpp>
 #include <transform.hpp>
 #include <mesh_component.hpp>
 #include <render_system.hpp>
 #include <kernel.hpp>
+#include <scene_manager.hpp>
+#include <camera_component.hpp>
 
 
 #undef main
@@ -23,32 +25,10 @@ int main()
 
 
 	Window ventana("prueba", width, height);
+	
+	Default_Scene escena("default", ventana);
 
-	Scene escena("default scene", ventana);
-
-	Entity entidad(&escena);
-
-	Vector3 movimiento(1, 1, 1);
-
-	entidad.get_transform()->print_position();
-
-	entidad.get_transform()->translate(movimiento);
-
-	entidad.get_transform()->print_position();
-
-	Renderer_System render_system(ventana);
-
-	Mesh_Component cube("../models/cobe.obj", render_system);
-
-	entidad.add_component(&cube);
-
-	Kernel* kernel = new Kernel();
-
-	kernel->add_task(&render_system);
-
-	kernel->initialization();
-
-	kernel->execute();
+	Scene_manager::instance().run_scene(&escena);
 
 	
 

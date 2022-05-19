@@ -1,5 +1,6 @@
 
 
+
 #include <scene.hpp>
 #include <sstream>
 
@@ -12,11 +13,8 @@ namespace MKengine
 	{
 		this->name = name;
 
-
-
-		//renderer_system.reset(new Renderer_System(window));
-		//->control_system.reset(new Control_System);
-		//->collision_system.reset(new Collision_System);
+		kernel.reset(new Kernel());
+		renderer_system.reset(new Renderer_System(window, *kernel));
 	}
 	
 
@@ -31,17 +29,6 @@ namespace MKengine
 		return entities[id];
 	}
 
-
-	void Scene::update(float time)
-	{
-		//->control_system->run(time);
-		//->collision_system->run(time);
-	}
-
-	void Scene::render()
-	{
-		renderer_system->run(0);
-	}
 
 	void Scene::assert_entity_id(std::string* id) 
 	{
@@ -59,4 +46,21 @@ namespace MKengine
 			*id = base;
 		}
 	}	
+
+	void Scene::setup()
+	{
+
+	}
+
+	void Scene::init()
+	{
+		kernel->initialization();
+		kernel->execute();
+	}
+
+	void Scene::load()
+	{
+		setup();
+		init();
+	}
 }

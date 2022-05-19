@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\camera_component.cpp" />
+    <ClCompile Include="code\default_scene.cpp" />
     <ClCompile Include="code\entity.cpp" />
     <ClCompile Include="code\kernel.cpp" />
     <ClCompile Include="code\main.cpp" />
@@ -27,15 +29,19 @@
     <ClCompile Include="code\scene.cpp" />
     <ClCompile Include="code\transform.cpp" />
     <ClCompile Include="code\window.cpp" />
+    <ClCompile Include="headers\scene_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\camera_component.hpp" />
     <ClInclude Include="headers\component.hpp" />
+    <ClInclude Include="headers\default_scene.hpp" />
     <ClInclude Include="headers\entity.hpp" />
     <ClInclude Include="headers\kernel.hpp" />
     <ClInclude Include="headers\mesh_component.hpp" />
     <ClInclude Include="headers\render_component.hpp" />
     <ClInclude Include="headers\render_system.hpp" />
     <ClInclude Include="headers\scene.hpp" />
+    <ClInclude Include="headers\scene_manager.hpp" />
     <ClInclude Include="headers\system.hpp" />
     <ClInclude Include="headers\task.hpp" />
     <ClInclude Include="headers\transform.hpp" />

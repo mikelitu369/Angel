@@ -19,12 +19,6 @@ namespace MKengine
 
 	public:
 
-		static Kernel& instance()				
-		{
-			static Kernel kernel;
-			return kernel;
-		}
-
 		std::set<Task*, Task::Compare> tasks;   
 
 		bool running = true;
