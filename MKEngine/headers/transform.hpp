@@ -10,16 +10,14 @@
 
 namespace MKengine
 {
-	typedef glm::mat4 Matrix44;
-	typedef glm::vec3 Vector3;
 
 	class Transform : public Component
 	{
 	private:
 
-		Vector3 position;			
-		Vector3 rotation;			
-		Vector3 scale;				
+		glm::vec3 position;			
+		glm::vec3 rotation;			
+		glm::vec3 scale;				
 
 		Transform* parent = nullptr;			
 
@@ -27,26 +25,26 @@ namespace MKengine
 	public:
 
 		Transform(Transform* const newParent = nullptr);
-		Transform(Vector3 const position, Vector3 const rotation, Vector3 const scale, Transform* const newParent = nullptr);
+		Transform(glm::vec3 const position, glm::vec3 const rotation, glm::vec3 const scale, Transform* const newParent = nullptr);
 
 
 		void set_parent(Transform* const newParent);
 
 		
-		Matrix44 get_transform_matrix() const;
+		glm::mat4 get_transform_matrix() const;
 
-		Vector3 Position() const;
-		Vector3 Rotation() const;
-		Vector3 Scale() const;
+		glm::vec3 Position() const;
+		glm::vec3 Rotation() const;
+		glm::vec3 Scale() const;
 
-		Vector3 localPosition() const;
-		Vector3 localRotation() const;
-		Vector3 localScale() const;
+		glm::vec3 localPosition() const;
+		glm::vec3 localRotation() const;
+		glm::vec3 localScale() const;
 
-		void set_local_position(Vector3 position);
-		void translate(Vector3 translation);
-		void set_local_rotatoin(Vector3 rotation);
-		void set_local_scale(Vector3 scale);
+		void set_local_position(glm::vec3 position);
+		void translate(glm::vec3 translation);
+		void set_local_rotatoin(glm::vec3 rotation);
+		void set_local_scale(glm::vec3 scale);
 
 		void print_position()
 		{

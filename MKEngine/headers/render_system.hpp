@@ -5,6 +5,7 @@
 #include <Render_Node.hpp>
 #include <memory>
 #include <kernel.hpp>
+#include <vector>
 
 
 
@@ -23,11 +24,11 @@ namespace MKengine
 
 		std::unique_ptr < glt::Render_Node > render_node;
 
-		Renderer_System(Window& window, Kernel& kernel);
+		Renderer_System(Window& window, Kernel& kernel, int priority);
 
 		void initialize();
 
-		void run(float);
+		void run();
 
 		void end() {}
 
@@ -36,6 +37,9 @@ namespace MKengine
 		Render_Component* create_mesh(const std::string& id, const std::string& path);
 
 		Render_Component* create_camera(const std::string& id);
+
+		Render_Component* create_light(const std::string& id);
+
 
 
 	};

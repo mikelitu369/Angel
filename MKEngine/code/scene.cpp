@@ -14,7 +14,8 @@ namespace MKengine
 		this->name = name;
 
 		kernel.reset(new Kernel());
-		renderer_system.reset(new Renderer_System(window, *kernel));
+		renderer_system.reset(new Renderer_System(window, *kernel, 2));
+		controller_system.reset(new Controller_System(*kernel, 1));
 	}
 	
 

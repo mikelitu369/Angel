@@ -25,7 +25,7 @@ namespace MKengine
 		{
 			for (Task* task : tasks)
 			{
-				task->run(0);
+				task->run();
 			}			
 		} 
 

@@ -7,19 +7,21 @@
 #include <scene.hpp>
 #include <mesh_component.hpp>
 #include <camera_component.hpp>
+#include <light_component.hpp>
 
 using namespace glt;
 
 namespace MKengine
 {
-	Renderer_System::Renderer_System(Window& window, Kernel & kernel)
+	Renderer_System::Renderer_System(Window& window, Kernel & kernel, int priority)
 	{
+		this->priority = priority;
 		this->window = &window;
 		render_node.reset(new Render_Node);
 		kernel.add_task(this);
 	}
 
-	void Renderer_System::run(float time = 0)
+	void Renderer_System::run()
 	{
 		GLsizei width = GLsizei(window->get_width());
 		GLsizei height = GLsizei(window->get_height());
@@ -65,6 +67,15 @@ namespace MKengine
 	Render_Component* Renderer_System::create_camera(const std::string& id)
 	{
 		Render_Component* component = new Camera_Component();
+		this->render_node->add(id, component->get_node());
+		this->add_render_component(component);
+
+		return component;
+	}
+
+	Render_Component* Renderer_System::create_light(const std::string& id)
+	{
+		Render_Component* component = new Light_Component();
 		this->render_node->add(id, component->get_node());
 		this->add_render_component(component);
 

@@ -11,13 +11,13 @@
 #include <render_component.hpp>
 #include <render_system.hpp>
 #include <kernel.hpp>
+#include <controller_system.hpp>
 
 
 namespace MKengine
 {
 	class Window;	
 
-	class Renderer_System;
 
 	class Scene
 	{
@@ -27,6 +27,8 @@ namespace MKengine
 
 		std::unique_ptr <Kernel> kernel;
 		std::unique_ptr <Renderer_System> renderer_system;
+		std::unique_ptr <Controller_System> controller_system;
+
 
 		std::string name;									
 

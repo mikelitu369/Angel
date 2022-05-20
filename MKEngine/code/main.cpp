@@ -20,12 +20,14 @@ using namespace MKengine;
 
 int main()
 {
-	int width = 800;
-	int height = 800;
+	int width = 1920;
+	int height = 1080;
+
+	//	Limites de cooredenadas de la escena X[-5, 5] Y[-2.5, 2.5]	
 
 
 	Window ventana("prueba", width, height);
-	
+
 	Default_Scene escena("default", ventana);
 
 	Scene_manager::instance().run_scene(&escena);
