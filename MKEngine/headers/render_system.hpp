@@ -33,9 +33,9 @@ namespace MKengine
 
 		void add_render_component(Render_Component*);
 
-		std::shared_ptr<Render_Component> create_mesh(const std::string& id, const std::string& path);
+		Render_Component* create_mesh(const std::string& id, const std::string& path);
 
-		std::shared_ptr<Render_Component> create_camera(const std::string& id);
+		Render_Component* create_camera(const std::string& id);
 
 
 	};

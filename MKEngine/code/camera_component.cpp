@@ -13,7 +13,7 @@ using namespace std;
 namespace MKengine
 {
 
-	Camera_Component::Camera_Component(const std::string & id)
+	Camera_Component::Camera_Component()
 	{
 
 		camera.reset(new Camera(20.f, 1.f, 50.f, 1.f));

@@ -13,9 +13,9 @@ namespace MKengine
 		Entity camera(this);
 		glm::vec3 posicion_camara(0, -10, 0);
 		camera.get_transform()->set_local_position(posicion_camara);
-		camera.add_component(renderer_system->create_camera("main_camera").get());
+		camera.add_component(renderer_system->create_camera("main_camera"));
 
 		Entity cubo(this);		
-		camera.add_component(renderer_system->create_mesh("cubo","../models/cube.obj").get());
+		cubo.add_component(renderer_system->create_mesh("cubo","../models/cube.obj"));
 	}
 }

@@ -52,28 +52,21 @@ namespace MKengine
 
 	}
 
-	std::shared_ptr<Render_Component> Renderer_System::create_mesh(const std::string& id, const std::string& path)
+	Render_Component* Renderer_System::create_mesh(const std::string& id, const std::string& path)
 	{
-		std::shared_ptr<Mesh_Component> component;
-		component.reset(new Mesh_Component(path));
 
-
-		this->render_node->add(id, component.get()->get_node());
-
-		this->add_render_component(component.get());
+		Render_Component* component = new Mesh_Component(path);
+		this->render_node->add(id, component->get_node());
+		this->add_render_component(component);
 
 		return component;
 	}
 
-	std::shared_ptr<Render_Component> Renderer_System::create_camera(const std::string& id)
+	Render_Component* Renderer_System::create_camera(const std::string& id)
 	{
-		std::shared_ptr<Camera_Component> component;
-		component.reset(new Camera_Component(id));
-
-
-		this->render_node->add(id, component.get()->get_node());
-
-		this->add_render_component(component.get());
+		Render_Component* component = new Camera_Component();
+		this->render_node->add(id, component->get_node());
+		this->add_render_component(component);
 
 		return component;
 	}

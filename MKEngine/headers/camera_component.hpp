@@ -19,7 +19,7 @@ namespace MKengine
 		std::shared_ptr< glt::Camera > camera = nullptr; 			
 
 
-		Camera_Component(const std::string & id);
+		Camera_Component();
 
 
 		std::shared_ptr<glt::Node> get_node() override

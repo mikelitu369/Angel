@@ -8,7 +8,7 @@ namespace MKengine
 {
 	Entity::Entity(Scene* scene)
 	{
-		id = "";
+		id = "0";
 
 		this->transform = new Transform();
 		add_component(transform);
