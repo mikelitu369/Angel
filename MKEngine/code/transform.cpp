@@ -2,7 +2,6 @@
 
 #include <transform.hpp>
 #include <entity.hpp>
-#include <iostream>
 
 namespace MKengine
 {
@@ -22,8 +21,6 @@ namespace MKengine
 		scale.x = 1;
 		scale.y = 1;
 		scale.z = 1;
-
-		std::cout << "Se crea un entity: " << position.x << rotation.x << scale.x << " // X -> (P)osition(R)otation(S)cale" << std::endl;
 	}
 
 	Transform::Transform(glm::vec3 const position, glm::vec3 const rotation, glm::vec3 const scale, Transform* const newParent)

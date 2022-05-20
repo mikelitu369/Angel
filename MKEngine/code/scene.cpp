@@ -3,6 +3,7 @@
 
 #include <scene.hpp>
 #include <sstream>
+#include <input_system.hpp>
 
 
 using namespace std;
@@ -16,6 +17,9 @@ namespace MKengine
 		kernel.reset(new Kernel());
 		renderer_system.reset(new Renderer_System(window, *kernel, 2));
 		controller_system.reset(new Controller_System(*kernel, 1));
+		kernel->add_task(&Input_System::instance());
+
+		Scene_manager::instance().add_scene(this);
 	}
 	
 

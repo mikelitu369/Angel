@@ -46,4 +46,14 @@ namespace MKengine
 	{
 		return current_scene;
 	}
+
+	void Scene_manager::close()
+	{
+		current_scene->close();
+	}
+
+	void Scene_manager::reset()
+	{
+		current_scene->reset();
+	}
 }

@@ -7,7 +7,8 @@
 #include <kernel.hpp>
 #include <controller_component.hpp>
 #include <vector>
-
+#include <enemy_controller.hpp>
+#include <player_controller.hpp>
 
 
 namespace MKengine
@@ -30,8 +31,10 @@ namespace MKengine
 
 		void add_controller_component(Controller_Component* component);
 
-		template< typename T >
-		T* create_controller();
+		Enemy_Controller* create_enemy_controller();
+
+		Player_Controller* create_player_controller();
+
 	};
 }
 

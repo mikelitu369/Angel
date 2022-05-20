@@ -1,16 +1,9 @@
 
 
-#include <memory>
-#include <vector>
 #include <window.hpp>
 #include <default_scene.hpp>
-#include <entity.hpp>
-#include <transform.hpp>
-#include <mesh_component.hpp>
-#include <render_system.hpp>
-#include <kernel.hpp>
 #include <scene_manager.hpp>
-#include <camera_component.hpp>
+#include <iostream>
 
 
 #undef main
@@ -28,13 +21,17 @@ int main()
 
 	Window ventana("prueba", width, height);
 
+	std::cout << "Ventana creada exitosamente:   " << width << " / " << height << "   width / height" << std::endl;
+
 	Default_Scene escena("default", ventana);
+	
+	std::cout << "Escena creada:  " << &escena << " / " << &ventana << "   direccion_memoria_escena / direccion_memoria_ventana" << std::endl;
+
+	std::cout << "Comienza ejecucion en kernel..." << std::endl;
 
 	Scene_manager::instance().run_scene(&escena);
 
-	
-
-	while (true) {}
+	std::cout << "Fin de ejecucion" << std::endl;
 
 	return 0;
 }

@@ -1,6 +1,7 @@
 
 #include <controller_system.hpp>
 
+
 namespace MKengine
 {
 	Controller_System::Controller_System(Kernel& kernel, int priority)
@@ -36,14 +37,21 @@ namespace MKengine
 		controller_components.push_back(new_component);
 	}
 
-	template< typename T >
-	T* Controller_System::create_controller()
+	Enemy_Controller* Controller_System::create_enemy_controller()
 	{
 
-		Controller_Component* component = new T();
+		Enemy_Controller* component = new Enemy_Controller();
 		this->add_controller_component(component);
 
 		return component;
 	}
 
+	Player_Controller* Controller_System::create_player_controller()
+	{
+
+		Player_Controller* component = new Player_Controller();
+		this->add_controller_component(component);
+
+		return component;
+	}
 }

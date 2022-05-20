@@ -41,6 +41,9 @@ namespace MKengine
 
 		Scene* get_current_scene() const;
 
+		void close();
+
+		void reset();
 	};
 
 }

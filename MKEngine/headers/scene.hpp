@@ -6,8 +6,8 @@
 #include <memory>
 
 
-#include "entity.hpp"
-#include "scene_manager.hpp"
+#include <entity.hpp>
+#include <scene_manager.hpp>
 #include <render_component.hpp>
 #include <render_system.hpp>
 #include <kernel.hpp>
@@ -56,6 +56,10 @@ namespace MKengine
 		}
 
 		void load();
+
+		virtual void reset() {}
+
+		void close() { kernel->stop_kernel(); }
 	};
 
 

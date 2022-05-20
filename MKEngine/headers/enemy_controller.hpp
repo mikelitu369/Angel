@@ -14,6 +14,7 @@ namespace MKengine
 	private:
 
 		Transform* target;
+		float speed = 0.01f;
 
 	public:
 		
