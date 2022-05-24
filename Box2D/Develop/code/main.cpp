@@ -87,7 +87,8 @@ namespace
 
         b2PolygonShape body_shape;
 
-        body_shape.SetAsBox (width, height);
+        body_shape.SetAsBox(width, height);
+
 
         b2FixtureDef body_fixture;
 
