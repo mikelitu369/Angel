@@ -21,5 +21,7 @@ namespace MKbox2D
 
 		void Update() {}
 
+		b2CircleShape* get_shape() { return &body_shape; }
+
 	};
 }

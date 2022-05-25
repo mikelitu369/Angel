@@ -22,5 +22,7 @@ namespace MKbox2D
 
 		void Update() {}
 
+		b2PolygonShape* get_shape() { return &body_shape; }
+
 	};
 }

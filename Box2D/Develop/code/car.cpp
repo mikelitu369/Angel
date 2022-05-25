@@ -19,6 +19,20 @@ namespace MKbox2D
 		chasis->Render(renderer, window_height);
 		wheel1->Render(renderer, window_height);
 		wheel2->Render(renderer, window_height);
+
+		/*
+		b2DistanceJointDef* joint1 = new b2DistanceJointDef();
+		joint1->Initialize(chasis->get_body(), wheel1->get_body(), wheel1->get_shape()->m_p, wheel1->get_shape()->m_p);
+		joint1->length = 0;
+		joint1->collideConnected = false;
+		joint1->stiffness = 15.0f;
+		joint1->damping = 150.0f;
+		b2DistanceJoint joint01(joint1);		
+		b2DistanceJointDef* joint2 = new b2DistanceJointDef();
+		joint2->Initialize(chasis->get_body(), wheel2->get_body(), wheel2->get_shape()->m_p, wheel2->get_shape()->m_p);
+		joint2->length = 0;
+		*/
+
 	}
 
 	void Car::Update() {}

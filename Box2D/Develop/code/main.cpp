@@ -431,7 +431,7 @@ int main()
 
     //Circle circle(physics_world, b2_dynamicBody, 9, 6, 0.5f);
     //Cube cube(physics_world, b2_kinematicBody, 9, 4, 1, 0.2f);
-    Car car(physics_world, b2_kinematicBody, 9, 4, 0.2f, 1, 0.1f);
+    Car car(physics_world, b2_dynamicBody, 9, 4, 0.2f, 1, 0.1f);
     
     while (true)
     {
