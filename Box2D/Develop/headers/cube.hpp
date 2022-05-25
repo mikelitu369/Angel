@@ -3,19 +3,20 @@
 
 #pragma once
 
-
 #include <object.hpp>
 
 
 namespace MKbox2D
 {
-	class Circle : public Object
+	class Cube : public Object
 	{
 	protected:
-		b2CircleShape body_shape;
+
+		b2PolygonShape body_shape;
 
 	public:
-		Circle(b2World& physics_world, b2BodyType body_type, float x, float y, float radius);
+
+		Cube(b2World& physics_world, b2BodyType body_type, float x, float y, float width, float height);
 
 		void Render(sf::RenderWindow& renderer, float window_height);
 

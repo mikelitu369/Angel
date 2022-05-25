@@ -2,7 +2,6 @@
 
 
 #include <circle.hpp>
-#include <utils.hpp>
 
 namespace MKbox2D
 {
@@ -31,9 +30,9 @@ namespace MKbox2D
     {
         sf::CircleShape shape;
 
-        shape.setPosition(Utils::box2d_position_to_sfml_position(b2Mul(body->GetTransform(), body_shape.m_p), window_height, scale) - Vector2f(radius, radius));
-        shape.setRadius(radius);
-        shape.setFillColor(Color::Blue);
+        shape.setPosition(Utils::box2d_position_to_sfml_position(b2Mul(body->GetTransform(), body_shape.m_p), window_height, 1) - sf::Vector2f(body_shape.m_radius, body_shape.m_radius));
+        shape.setRadius(body_shape.m_radius);
+        shape.setFillColor(sf::Color::Blue);
 
         renderer.draw(shape);
     }

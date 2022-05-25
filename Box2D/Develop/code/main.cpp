@@ -17,8 +17,15 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+#include <circle.hpp>
+#include <cube.hpp>
+#include <car.hpp>
+
 using namespace sf;
 using namespace std;
+using namespace MKbox2D;
+
+#undef main
 
 namespace
 {
@@ -27,30 +34,30 @@ namespace
       * superior. Esta función se encarga de convertir el sistema de coordenadas para que la escena
       * no se vea invertida.
       */
-    inline Vector2f box2d_position_to_sfml_position (const b2Vec2 & box2d_position, float window_height, float scale)
+    inline Vector2f box2d_position_to_sfml_position(const b2Vec2& box2d_position, float window_height, float scale)
     {
         return Vector2f(box2d_position.x * scale, window_height - box2d_position.y * scale);
     }
 
     // ------------------------------------------------------------------------------------------ //
 
-    inline b2Vec2 sfml_position_to_box2d_position (const Vector2f & sfml_position, float window_height, float scale)
+    inline b2Vec2 sfml_position_to_box2d_position(const Vector2f& sfml_position, float window_height, float scale)
     {
         return b2Vec2(sfml_position.x / scale, (window_height - sfml_position.y) / scale);
     }
 
     // ------------------------------------------------------------------------------------------ //
 
-    b2Body * create_circle (b2World & physics_world, b2BodyType body_type, float x, float y, float radius)
+    b2Body* create_circle(b2World& physics_world, b2BodyType body_type, float x, float y, float radius)
     {
         // Se crea el body:
 
         b2BodyDef body_definition;
 
         body_definition.type = body_type;
-        body_definition.position.Set (x, y);                            // Posición inicial absoluta
+        body_definition.position.Set(x, y);                            // Posición inicial absoluta
 
-        b2Body * body = physics_world.CreateBody (&body_definition);
+        b2Body* body = physics_world.CreateBody(&body_definition);
 
         // Se añande una fixture:
 
@@ -60,28 +67,28 @@ namespace
 
         b2FixtureDef body_fixture;
 
-        body_fixture.shape       = &body_shape;
-        body_fixture.density     = 1.00f;
+        body_fixture.shape = &body_shape;
+        body_fixture.density = 1.00f;
         body_fixture.restitution = 0.75f;
-        body_fixture.friction    = 0.50f;
+        body_fixture.friction = 0.50f;
 
-        body->CreateFixture (&body_fixture);
+        body->CreateFixture(&body_fixture);
 
         return body;
     }
 
     // ------------------------------------------------------------------------------------------ //
 
-    b2Body * create_box (b2World & physics_world, b2BodyType body_type, float x, float y, float width, float height)
+    b2Body* create_box(b2World& physics_world, b2BodyType body_type, float x, float y, float width, float height)
     {
         // Se crea el body:
 
         b2BodyDef body_definition;
 
         body_definition.type = body_type;
-        body_definition.position.Set (x, y);                            // Posición inicial absoluta
+        body_definition.position.Set(x, y);                            // Posición inicial absoluta
 
-        b2Body * body = physics_world.CreateBody (&body_definition);
+        b2Body* body = physics_world.CreateBody(&body_definition);
 
         // Se añande una fixture:
 
@@ -92,40 +99,40 @@ namespace
 
         b2FixtureDef body_fixture;
 
-        body_fixture.shape       = &body_shape;
-        body_fixture.density     = 1.00f;
+        body_fixture.shape = &body_shape;
+        body_fixture.density = 1.00f;
         body_fixture.restitution = 0.50f;
-        body_fixture.friction    = 0.50f;
+        body_fixture.friction = 0.50f;
 
-        body->CreateFixture (&body_fixture);
+        body->CreateFixture(&body_fixture);
 
         return body;
     }
 
     // ------------------------------------------------------------------------------------------ //
 
-    b2Body * create_edge (b2World & physics_world, b2BodyType body_type, float x0, float y0, float x1, float y1)
+    b2Body* create_edge(b2World& physics_world, b2BodyType body_type, float x0, float y0, float x1, float y1)
     {
         // Se crea el body:
 
         b2BodyDef body_definition;
 
         body_definition.type = body_type;
-        body_definition.position.Set (0.f, 0.f);                        // Posición inicial absoluta
+        body_definition.position.Set(0.f, 0.f);                        // Posición inicial absoluta
 
-        b2Body * body = physics_world.CreateBody (&body_definition);
+        b2Body* body = physics_world.CreateBody(&body_definition);
 
         // Se añande una fixture:
 
         b2EdgeShape body_shape;
 
-        body_shape.SetTwoSided (b2Vec2(x0, y0), b2Vec2(x1, y1));        // Coordenadas locales respecto al centro del body
+        body_shape.SetTwoSided(b2Vec2(x0, y0), b2Vec2(x1, y1));        // Coordenadas locales respecto al centro del body
 
         b2FixtureDef body_fixture;
 
         body_fixture.shape = &body_shape;
 
-        body->CreateFixture (&body_fixture);
+        body->CreateFixture(&body_fixture);
 
         return body;
     }
@@ -135,10 +142,10 @@ namespace
     void render_circle
     (
         b2Vec2              center,
-        float               radius, 
-        const b2Transform & transform, 
-        RenderWindow      & renderer, 
-        float               window_height, 
+        float               radius,
+        const b2Transform& transform,
+        RenderWindow& renderer,
+        float               window_height,
         float               scale
     )
     {
@@ -146,51 +153,51 @@ namespace
 
         radius *= scale;
 
-        shape.setPosition  (box2d_position_to_sfml_position (b2Mul (transform, center), window_height, scale) - Vector2f(radius, radius));
-        shape.setRadius    (radius);
-        shape.setFillColor (Color::Blue);
+        shape.setPosition(box2d_position_to_sfml_position(b2Mul(transform, center), window_height, scale) - Vector2f(radius, radius));
+        shape.setRadius(radius);
+        shape.setFillColor(Color::Blue);
 
-        renderer.draw (shape);
+        renderer.draw(shape);
     }
 
     // ------------------------------------------------------------------------------------------ //
 
     void render_segment
     (
-        const Vector2f & start, 
-        const Vector2f & end, 
-        const Color    & color,
-        RenderWindow   & renderer
+        const Vector2f& start,
+        const Vector2f& end,
+        const Color& color,
+        RenderWindow& renderer
     )
     {
         Vertex line[] =
         {
             Vertex(start, color),
-            Vertex(  end, color),
+            Vertex(end, color),
         };
 
-        renderer.draw (line, 2, Lines);
+        renderer.draw(line, 2, Lines);
     }
 
     // ------------------------------------------------------------------------------------------ //
 
     void render_segment
     (
-        b2Vec2              start, 
-        b2Vec2              end, 
-        const b2Transform & transform, 
-        RenderWindow      & renderer, 
-        float               window_height, 
+        b2Vec2              start,
+        b2Vec2              end,
+        const b2Transform& transform,
+        RenderWindow& renderer,
+        float               window_height,
         float               scale
     )
     {
-        start = b2Mul (transform, start);
-        end   = b2Mul (transform, end);
+        start = b2Mul(transform, start);
+        end = b2Mul(transform, end);
 
-        render_segment 
+        render_segment
         (
-            box2d_position_to_sfml_position (start, window_height, scale),
-            box2d_position_to_sfml_position (  end, window_height, scale),
+            box2d_position_to_sfml_position(start, window_height, scale),
+            box2d_position_to_sfml_position(end, window_height, scale),
             Color::Green,
             renderer
         );
@@ -200,95 +207,95 @@ namespace
 
     void render_polygon
     (
-        const b2Vec2      * vertices,
+        const b2Vec2* vertices,
         int                 number_of_vertices,
-        const b2Transform & transform,
-        RenderWindow      & renderer,
+        const b2Transform& transform,
+        RenderWindow& renderer,
         float               window_height,
         float               scale
     )
     {
         ConvexShape sfml_polygon;
 
-        sfml_polygon.setPointCount (number_of_vertices);
-        sfml_polygon.setFillColor  (Color::Yellow);
+        sfml_polygon.setPointCount(number_of_vertices);
+        sfml_polygon.setFillColor(Color::Yellow);
 
         for (int index = 0; index < number_of_vertices; index++)
         {
             sfml_polygon.setPoint
             (
-                index, 
-                box2d_position_to_sfml_position (b2Mul (transform, vertices[index]), window_height, scale)
+                index,
+                box2d_position_to_sfml_position(b2Mul(transform, vertices[index]), window_height, scale)
             );
         }
 
-        renderer.draw (sfml_polygon);
+        renderer.draw(sfml_polygon);
     }
 
     // ------------------------------------------------------------------------------------------ //
 
-    void render (b2World & physics_world, RenderWindow & renderer, float scale)
+    void render(b2World& physics_world, RenderWindow& renderer, float scale)
     {
         // Se cachea el alto de la ventana en una variable local:
 
-        float window_height = (float)renderer.getSize ().y;
+        float window_height = (float)renderer.getSize().y;
 
         // Se recorre toda la lista de bodies de physics_world:
 
-        for (b2Body * body = physics_world.GetBodyList (); body != nullptr; body = body->GetNext ())
+        for (b2Body* body = physics_world.GetBodyList(); body != nullptr; body = body->GetNext())
         {
             // Se obtiene el transform del body:
 
-            const b2Transform & body_transform = body->GetTransform ();
+            const b2Transform& body_transform = body->GetTransform();
 
             // Se recorre la lista de fixtures del body:
 
-            for (b2Fixture * fixture = body->GetFixtureList(); fixture != nullptr; fixture = fixture->GetNext ())
+            for (b2Fixture* fixture = body->GetFixtureList(); fixture != nullptr; fixture = fixture->GetNext())
             {
                 // Se obtiene el tipo de forma de la fixture:
 
-                b2Shape::Type shape_type = fixture->GetShape ()->GetType ();
+                b2Shape::Type shape_type = fixture->GetShape()->GetType();
 
                 switch (shape_type)
                 {
-                    case b2Shape::e_circle:
-                    {
-                        // Se crea un CircleShape a partir de los atributos de la forma de la fixture y del body:
-                        // En SFML el centro de un círculo no está en su position. Su position es la esquina superior izquierda
-                        // del cuadrado en el que está inscrito. Por eso a position se le resta el radio tanto en X como en Y.
+                case b2Shape::e_circle:
+                {
+                    // Se crea un CircleShape a partir de los atributos de la forma de la fixture y del body:
+                    // En SFML el centro de un círculo no está en su position. Su position es la esquina superior izquierda
+                    // del cuadrado en el que está inscrito. Por eso a position se le resta el radio tanto en X como en Y.
 
-                        b2CircleShape * circle = dynamic_cast< b2CircleShape * >(fixture->GetShape ());
+                    b2CircleShape* circle = dynamic_cast<b2CircleShape*>(fixture->GetShape());
 
-                        render_circle  (circle->m_p, circle->m_radius, body_transform, renderer, window_height, scale);
+                    render_circle(circle->m_p, circle->m_radius, body_transform, renderer, window_height, scale);
 
-                        break;
-                    }
-                    
-                    case b2Shape::e_edge:
-                    {
-                        // Se toman los dos vértices del segmento y se ajusta su posición usando el transform del body.
-                        // Los vértices resultantes se convierten y se ponen en un array para finalmente dibujar el segmento
-                        // que los une usando la sobrecarga del método draw() que permite dibujar primitivas de OpenGL a
-                        // partir de datos de vértices.
+                    break;
+                }
 
-                        b2EdgeShape   * edge = dynamic_cast< b2EdgeShape * >(fixture->GetShape ());
+                case b2Shape::e_edge:
+                {
+                    // Se toman los dos vértices del segmento y se ajusta su posición usando el transform del body.
+                    // Los vértices resultantes se convierten y se ponen en un array para finalmente dibujar el segmento
+                    // que los une usando la sobrecarga del método draw() que permite dibujar primitivas de OpenGL a
+                    // partir de datos de vértices.
 
-                        render_segment (edge->m_vertex1, edge->m_vertex2, body_transform, renderer, window_height, scale);
+                    b2EdgeShape* edge = dynamic_cast<b2EdgeShape*>(fixture->GetShape());
 
-                        break;
-                    }
-                
-                    case b2Shape::e_polygon:
-                    {
-                        // Se toma la forma poligonal de Box2D (siempre es convexa) y se crea a partir de sus vértices un
-                        // ConvexShape de SFML. Cada vértice de Box2D hay que transformarlo usando el transform del body.
+                    render_segment(edge->m_vertex1, edge->m_vertex2, body_transform, renderer, window_height, scale);
 
-                        b2PolygonShape * box2d_polygon = dynamic_cast< b2PolygonShape * >(fixture->GetShape ());
+                    break;
+                }
 
-                        render_polygon  (box2d_polygon->m_vertices, box2d_polygon->m_count, body_transform, renderer, window_height, scale);
+                case b2Shape::e_polygon:
+                {
+                    // Se toma la forma poligonal de Box2D (siempre es convexa) y se crea a partir de sus vértices un
+                    // ConvexShape de SFML. Cada vértice de Box2D hay que transformarlo usando el transform del body.
 
-                        break;
-                    }
+                    b2PolygonShape* box2d_polygon = dynamic_cast<b2PolygonShape*>(fixture->GetShape());
+
+                    render_polygon(box2d_polygon->m_vertices, box2d_polygon->m_count, body_transform, renderer, window_height, scale);
+
+                    break;
+                }
                 }
             }
         }
@@ -299,130 +306,144 @@ namespace
     struct Input_Status
     {
         bool  mouse_was_clicked = false;
-        float click_start_x     = 0;
-        float click_start_y     = 0;
-        float current_mouse_x   = 0;
-        float current_mouse_y   = 0;
+        float click_start_x = 0;
+        float click_start_y = 0;
+        float current_mouse_x = 0;
+        float current_mouse_y = 0;
     };
 
     // ------------------------------------------------------------------------------------------ //
 
-    bool process (Window & window, Input_Status & status, b2Body * circle, float window_height, float scale)
+    bool process(Window& window, Input_Status& status, b2Body* circle, float window_height, float scale)
     {
         Event event;
 
-        while (window.pollEvent (event))
+        while (window.pollEvent(event))
         {
             switch (event.type)
             {
-                case Event::KeyPressed:
+            case Event::KeyPressed:
+            {
+                switch (event.key.code)
                 {
-                    switch (event.key.code)
-                    {
-                        case Keyboard::Left:
-                        {
-                            if (circle->GetAngularVelocity () < +10.f) circle->ApplyTorque (+5, true);
-                            break;
-                        }
-                        case Keyboard::Right:
-                        {
-                            if (circle->GetAngularVelocity () > -10.f) circle->ApplyTorque (-5, true);
-                            break;
-                        }
-                        case Keyboard::Space:
-                        {
-                            circle->ApplyLinearImpulse ({ 0, 6 }, circle->GetWorldCenter (), true);
-                            break;
-                        }
-                    }
-
+                case Keyboard::Left:
+                {
+                    if (circle->GetAngularVelocity() < +10.f) circle->ApplyTorque(+5, true);
                     break;
                 }
-
-                case Event::MouseButtonPressed:
+                case Keyboard::Right:
                 {
-                    if (event.mouseButton.button == Mouse::Button::Left)
-                    {
-                        status.click_start_x = status.current_mouse_x = float(event.mouseButton.x);
-                        status.click_start_y = status.current_mouse_y = float(event.mouseButton.y);
-                        status.mouse_was_clicked = true;
-                    }
-
+                    if (circle->GetAngularVelocity() > -10.f) circle->ApplyTorque(-5, true);
                     break;
                 }
-
-                case Event::MouseButtonReleased:
+                case Keyboard::Space:
                 {
-                    if (status.mouse_was_clicked && event.mouseButton.button == Mouse::Button::Left)
-                    {
-                        b2Vec2 start = sfml_position_to_box2d_position
-                        (
-                            { status.click_start_x, status.click_start_y }, window_height, scale
-                        );
-
-                        b2Vec2 end = sfml_position_to_box2d_position
-                        (
-                            { status.current_mouse_x, status.current_mouse_y }, window_height, scale
-                        );
-
-                        b2Vec2 impulse = end - start;
-
-                        impulse *= 1.5f;
-
-                        circle->ApplyLinearImpulse (impulse, circle->GetWorldCenter (), true);
-
-                        status.mouse_was_clicked = false;
-                    }
-
+                    circle->ApplyLinearImpulse({ 0, 6 }, circle->GetWorldCenter(), true);
                     break;
                 }
-
-                case Event::MouseMoved:
-                {
-                    if (status.mouse_was_clicked)
-                    {
-                        status.current_mouse_x = float(event.mouseMove.x);
-                        status.current_mouse_y = float(event.mouseMove.y);
-                    }
-
-                    break;
                 }
 
-                case Event::Closed:
+                break;
+            }
+
+            case Event::MouseButtonPressed:
+            {
+                if (event.mouseButton.button == Mouse::Button::Left)
                 {
-                    return true;
+                    status.click_start_x = status.current_mouse_x = float(event.mouseButton.x);
+                    status.click_start_y = status.current_mouse_y = float(event.mouseButton.y);
+                    status.mouse_was_clicked = true;
                 }
+
+                break;
+            }
+
+            case Event::MouseButtonReleased:
+            {
+                if (status.mouse_was_clicked && event.mouseButton.button == Mouse::Button::Left)
+                {
+                    b2Vec2 start = sfml_position_to_box2d_position
+                    (
+                        { status.click_start_x, status.click_start_y }, window_height, scale
+                    );
+
+                    b2Vec2 end = sfml_position_to_box2d_position
+                    (
+                        { status.current_mouse_x, status.current_mouse_y }, window_height, scale
+                    );
+
+                    b2Vec2 impulse = end - start;
+
+                    impulse *= 1.5f;
+
+                    circle->ApplyLinearImpulse(impulse, circle->GetWorldCenter(), true);
+
+                    status.mouse_was_clicked = false;
+                }
+
+                break;
+            }
+
+            case Event::MouseMoved:
+            {
+                if (status.mouse_was_clicked)
+                {
+                    status.current_mouse_x = float(event.mouseMove.x);
+                    status.current_mouse_y = float(event.mouseMove.y);
+                }
+
+                break;
+            }
+
+            case Event::Closed:
+            {
+                return true;
+            }
             }
         }
 
         return false;
     }
-
 }
 
-int main ()
+
+int main()
 {
-    constexpr auto window_width  = 800u;
-    constexpr auto window_height = 600u;
+    constexpr auto window_width = 1800u;
+    constexpr auto window_height = 900u;
 
     RenderWindow window(VideoMode(window_width, window_height), "Box2D Forces", Style::Titlebar | Style::Close, ContextSettings(32));
 
-    window.setVerticalSyncEnabled (true);
+    window.setVerticalSyncEnabled(true);
 
-    // Se crea y se configura la escena física (de 8 x 6 metros):
 
     b2World physics_world{ b2Vec2{ 0, -10.f } };
 
-    constexpr float left   = 0.01f;
-    constexpr float right  = 8.00f;
-    constexpr float top    = 6.00f;
+    constexpr float left = 0.01f;
+    constexpr float right = 18.0f;
+    constexpr float top = 9.0f;
     constexpr float bottom = 0.01f;
 
-    create_edge (physics_world, b2_staticBody, left,  bottom,  right, bottom);
-    create_edge (physics_world, b2_staticBody, left,  bottom,  left,  top   );
-    create_edge (physics_world, b2_staticBody, left,  top,     right, top   );
-    create_edge (physics_world, b2_staticBody, right, bottom,  right, top   );
+    create_edge(physics_world, b2_staticBody, left, bottom, right, bottom);
+    create_edge(physics_world, b2_staticBody, left, bottom, left, top);
+    create_edge(physics_world, b2_staticBody, left, top, right, top);
+    create_edge(physics_world, b2_staticBody, right, bottom, right, top);
 
+    //Circle circle(physics_world, b2_dynamicBody, 9, 6, 0.5f);
+    //Cube cube(physics_world, b2_kinematicBody, 9, 4, 1, 0.2f);
+    Car car(physics_world, b2_kinematicBody, 9, 4, 0.2f, 1, 0.1f);
+    
+    while (true)
+    {
+        physics_world.Step(1.0f / 60.0f, 8,4);
+
+        window.clear();
+        render(physics_world, window, 100.0f);
+        window.display();
+    }
+
+
+    /*
     auto * circle = create_circle (physics_world, b2_dynamicBody  , 4, 2, .5f);
     auto * box    = create_box    (physics_world, b2_kinematicBody, 4, 3,  1, .2f);
 
@@ -433,7 +454,7 @@ int main ()
     // Se ejecuta el bucle principal de la animación:
 
     Input_Status status;
-    
+
     const float target_fps  = 60.f;                     // Cuántos fotogramas por segundo se busca conseguir
     const float target_time = 1.f / target_fps;         // Duración en segundos de un fotograma a la tasa deseada
 
@@ -465,7 +486,7 @@ int main ()
 
         if (status.mouse_was_clicked)
         {
-            render_segment 
+            render_segment
             (
                 { status.  click_start_x, status.  click_start_y },
                 { status.current_mouse_x, status.current_mouse_y },
@@ -491,6 +512,6 @@ int main ()
         delta_time = timer.getElapsedTime ().asSeconds ();
     }
     while (not exit);
-
+    */
     return 0;
 }

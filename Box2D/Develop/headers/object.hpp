@@ -4,6 +4,7 @@
 
 #include <Box2D/Box2D.h>
 #include <SFML\Graphics.hpp>
+#include <utils.hpp>
 
 
 namespace MKbox2D
@@ -18,5 +19,6 @@ namespace MKbox2D
 	public:
 
 		virtual void Render(sf::RenderWindow& renderer, float window_height) = 0;
+		virtual void Update() = 0;
 	};
 }
