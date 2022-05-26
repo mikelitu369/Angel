@@ -16,6 +16,10 @@ namespace MKbox2D
 		Cube* chasis;
 		Circle* wheel1;
 		Circle* wheel2;
+		b2RevoluteJoint* motor1;
+		b2RevoluteJoint* motor2;
+
+		float speed;
 
 	public:
 		
