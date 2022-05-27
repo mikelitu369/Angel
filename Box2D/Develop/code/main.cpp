@@ -69,7 +69,7 @@ namespace
 
     // ------------------------------------------------------------------------------------------ //
 
-    bool process(Window& window, Input_Status& status, b2Body* circle, float window_height, float scale)
+    bool process(Window& window)
     {
         Event event;
 
@@ -83,73 +83,24 @@ namespace
                 {
                 case Keyboard::Left:
                 {
-                    if (circle->GetAngularVelocity() < +10.f) circle->ApplyTorque(+5, true);
                     break;
                 }
                 case Keyboard::Right:
                 {
-                    if (circle->GetAngularVelocity() > -10.f) circle->ApplyTorque(-5, true);
                     break;
                 }
-                case Keyboard::Space:
+                case Keyboard::Up:
                 {
-                    circle->ApplyLinearImpulse({ 0, 6 }, circle->GetWorldCenter(), true);
+                    break;
+                }
+                case Keyboard::Down:
+                {
                     break;
                 }
                 }
 
                 break;
             }
-
-            case Event::MouseButtonPressed:
-            {
-                if (event.mouseButton.button == Mouse::Button::Left)
-                {
-                    status.click_start_x = status.current_mouse_x = float(event.mouseButton.x);
-                    status.click_start_y = status.current_mouse_y = float(event.mouseButton.y);
-                    status.mouse_was_clicked = true;
-                }
-
-                break;
-            }
-
-            case Event::MouseButtonReleased:
-            {
-                if (status.mouse_was_clicked && event.mouseButton.button == Mouse::Button::Left)
-                {
-                    b2Vec2 start = Utils::sfml_position_to_box2d_position
-                    (
-                        { status.click_start_x, status.click_start_y }, window_height, scale
-                    );
-
-                    b2Vec2 end = Utils::sfml_position_to_box2d_position
-                    (
-                        { status.current_mouse_x, status.current_mouse_y }, window_height, scale
-                    );
-
-                    b2Vec2 impulse = end - start;
-
-                    impulse *= 1.5f;
-
-                    circle->ApplyLinearImpulse(impulse, circle->GetWorldCenter(), true);
-
-                    status.mouse_was_clicked = false;
-                }
-
-                break;
-            }
-
-            case Event::MouseMoved:
-            {
-                if (status.mouse_was_clicked)
-                {
-                    status.current_mouse_x = float(event.mouseMove.x);
-                    status.current_mouse_y = float(event.mouseMove.y);
-                }
-
-                break;
-            }
-
             case Event::Closed:
             {
                 return true;
