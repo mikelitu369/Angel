@@ -17,8 +17,6 @@ namespace MKbox2D
 	public:
 		Circle(b2World& physics_world, b2BodyType body_type, float x, float y, float radius);
 
-		void Render(sf::RenderWindow& renderer, float window_height);
-
 		void Update() {}
 
 		b2CircleShape* get_shape() { return &body_shape; }

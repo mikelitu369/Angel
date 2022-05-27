@@ -18,8 +18,6 @@ namespace MKbox2D
 
 		Cube(b2World& physics_world, b2BodyType body_type, float x, float y, float width, float height);
 
-		void Render(sf::RenderWindow& renderer, float window_height);
-
 		void Update() {}
 
 		b2PolygonShape* get_shape() { return &body_shape; }

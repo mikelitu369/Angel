@@ -90,12 +90,14 @@
     <ClCompile Include="..\..\code\circle.cpp" />
     <ClCompile Include="..\..\code\cube.cpp" />
     <ClCompile Include="..\..\code\main.cpp" />
+    <ClCompile Include="..\..\code\render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\headers\car.hpp" />
     <ClInclude Include="..\..\headers\circle.hpp" />
     <ClInclude Include="..\..\headers\cube.hpp" />
     <ClInclude Include="..\..\headers\object.hpp" />
+    <ClInclude Include="..\..\headers\render.hpp" />
     <ClInclude Include="..\..\headers\utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

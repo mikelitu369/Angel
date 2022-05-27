@@ -18,7 +18,6 @@ namespace MKbox2D
 
 	public:
 
-		virtual void Render(sf::RenderWindow& renderer, float window_height) = 0;
 		virtual void Update() = 0;
 		b2Body* get_body() { return body; }
 	};

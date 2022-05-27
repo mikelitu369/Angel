@@ -16,5 +16,9 @@ namespace MKbox2D
             return sf::Vector2f(box2d_position.x * scale, window_height - box2d_position.y * scale);
         }
 
+        static b2Vec2 sfml_position_to_box2d_position(const sf::Vector2f& sfml_position, float window_height, float scale)
+        {
+            return b2Vec2(sfml_position.x / scale, (window_height - sfml_position.y) / scale);
+        }
     };
 }

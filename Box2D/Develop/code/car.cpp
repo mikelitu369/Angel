@@ -39,12 +39,5 @@ namespace MKbox2D
 
 	}
 
-	void Car::Render(sf::RenderWindow& renderer, float window_height)
-	{
-		chasis->Render(renderer, window_height);
-		wheel1->Render(renderer, window_height);
-		wheel2->Render(renderer, window_height);
-	}
-
 	void Car::Update() {}
 }

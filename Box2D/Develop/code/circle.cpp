@@ -25,15 +25,4 @@ namespace MKbox2D
             body->CreateFixture(&body_fixture);
         }
 	}
-
-    void Circle::Render (sf::RenderWindow& renderer, float window_height)
-    {
-        sf::CircleShape shape;
-
-        shape.setPosition(Utils::box2d_position_to_sfml_position(b2Mul(body->GetTransform(), body_shape.m_p), window_height, 1) - sf::Vector2f(body_shape.m_radius, body_shape.m_radius));
-        shape.setRadius(body_shape.m_radius);
-        shape.setFillColor(sf::Color::Blue);
-
-        renderer.draw(shape);
-    }
 }

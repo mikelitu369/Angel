@@ -28,25 +28,4 @@ namespace MKbox2D
 
         body->CreateFixture(&body_fixture);
     }
-
-    void Cube::Render (sf::RenderWindow& renderer, float window_height)
-    {
-        sf::ConvexShape sfml_polygon;
-
-        int number_of_vertices = 4;
-
-        sfml_polygon.setPointCount(number_of_vertices);
-        sfml_polygon.setFillColor(sf::Color::Yellow);
-
-        for (int index = 0; index < number_of_vertices; index++)
-        {
-            sfml_polygon.setPoint
-            (
-                index,
-                Utils::box2d_position_to_sfml_position(b2Mul(body->GetTransform(), body_shape.m_vertices[index]), window_height, 1)
-            );
-        }
-
-        renderer.draw(sfml_polygon);
-    }
 }
