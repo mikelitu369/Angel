@@ -20,5 +20,12 @@ namespace MKbox2D
         {
             return b2Vec2(sfml_position.x / scale, (window_height - sfml_position.y) / scale);
         }
+
+        static float clamp(float base, float min, float max)
+        {
+            if (base < min) return min;
+            else if (base > max) return max;
+            return base;
+        }
     };
 }

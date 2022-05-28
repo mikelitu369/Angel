@@ -5,6 +5,7 @@
 #include<object.hpp>
 #include<circle.hpp>
 #include<cube.hpp>
+#include<carretilla.hpp>
 
 
 namespace MKbox2D
@@ -19,7 +20,11 @@ namespace MKbox2D
 		b2RevoluteJoint* motor1;
 		b2RevoluteJoint* motor2;
 
+		Carretilla* carretilla;
+		b2RevoluteJoint* motor3;
+
 		float speed;
+		float speed2;
 
 	public:
 		

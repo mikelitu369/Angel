@@ -2,15 +2,61 @@
 
 
 #include <default_scene.hpp>
+#include <car.hpp>
+#include <input.hpp>
+#include <edge.hpp>
 
 
 namespace MKbox2D
 {
+    SceneDefault::SceneDefault()
+    {
+        constexpr auto window_width = 1800u;
+        constexpr auto window_height = 900u;
+
+        window = new RenderWindow(VideoMode(window_width, window_height), "Box2D Forces", Style::Titlebar | Style::Close, ContextSettings(32));
+
+        window->setVerticalSyncEnabled(true);
+
+        world = new b2World(b2Vec2{ 0, -10.f });
+
+        constexpr float left = 0.01f;
+        constexpr float right = 18.0f;
+        constexpr float top = 9.0f;
+        constexpr float bottom = 0.01f;
+
+        //Margenes
+        Add_object(new Edge(*world, b2_staticBody, left, bottom, left, top));
+        Add_object(new Edge(*world, b2_staticBody, left, top, right, top));
+        Add_object(new Edge(*world, b2_staticBody, right, bottom, right, top));
+
+        //Primera plataforma
+        Add_object(new Edge(*world, b2_staticBody, left, top / 2, left + 2.5, top/2));
+
+        //Rampa
+        Add_object(new Edge(*world, b2_staticBody, left + 2.5, top / 2, left + 4, top / 2 - 1));
+        Add_object(new Edge(*world, b2_staticBody, left + 4, top / 2 - 1, left + 7, top / 2 - 2));
+        Add_object(new Edge(*world, b2_staticBody, left + 7, top / 2 - 2, left + 9, top / 2 - 2));
+        Add_object(new Edge(*world, b2_staticBody, left + 9, top / 2 - 2, left + 11, top / 2 - 1.5));
+
+        //Plataforma 2
+        Add_object(new Edge(*world, b2_staticBody, right, top / 5, right - 4, top / 5));
+
+
+        Car* car = new Car(*world, b2_dynamicBody, 1.5, 7, 0.2f, 1, 0.1f);
+
+        Add_object(new Carretilla (*world, b2_dynamicBody, 9, 5, 5, 1, 0.1));
+
+        Add_object(car);
+        
+    }
+
+
     void SceneDefault::Proces()
     {
         Event event;
 
-        while (window.pollEvent(event))
+        while (window->pollEvent(event))
         {
             switch (event.type)
             {
@@ -20,22 +66,22 @@ namespace MKbox2D
                 {
                 case Keyboard::Left:
                 {
-                    horizontal -= 1;
+                    Input::instance().horizontal -= 1;
                     break;
                 }
                 case Keyboard::Right:
                 {
-                    horizontal += 1;
+                    Input::instance().horizontal += 1;
                     break;
                 }
                 case Keyboard::Up:
                 {
-                    vertical += 1;
+                    Input::instance().vertical += 1;
                     break;
                 }
                 case Keyboard::Down:
                 {
-                    vertical -= 1;
+                    Input::instance().vertical -= 1;
                     break;
                 }
                 }
@@ -48,22 +94,22 @@ namespace MKbox2D
                 {
                 case Keyboard::Left:
                 {
-                    horizontal += 1;
+                    Input::instance().horizontal += 1;
                     break;
                 }
                 case Keyboard::Right:
                 {
-                    horizontal -= 1;
+                    Input::instance().horizontal -= 1;
                     break;
                 }
                 case Keyboard::Up:
                 {
-                    vertical -= 1;
+                    Input::instance().vertical -= 1;
                     break;
                 }
                 case Keyboard::Down:
                 {
-                    vertical += 1;
+                    Input::instance().vertical += 1;
                     break;
                 }
                 }
@@ -72,6 +118,10 @@ namespace MKbox2D
             }
             }
         }
+
+        Input::instance().horizontal = Utils::clamp(Input::instance().horizontal, -1, 1);
+        Input::instance().vertical = Utils::clamp(Input::instance().vertical, -1, 1);
+
     }
 
 
@@ -85,18 +135,21 @@ namespace MKbox2D
 
     void SceneDefault::Run()
     {
-
         while (active)
         {
             Proces();
             Update();
 
-            world.Step(1.0f / 60.0f, 8, 4);
+            world->Step(1.0f / 60.0f, 8, 4);
 
-            window.clear();
-            render_system->render(world, window, 100.0f);
-            window.display();
+            window->clear();
+            render_system->render(*world, *window, 100.0f);
+            window->display();
         }
+    }
 
+    void SceneDefault::Add_object(Object* new_object)
+    {
+        objectos.push_back(new_object);
     }
 }

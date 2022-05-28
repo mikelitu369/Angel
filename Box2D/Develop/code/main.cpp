@@ -17,11 +17,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include <circle.hpp>
-#include <cube.hpp>
-#include <car.hpp>
+
 
 #include<render.hpp>
+
+#include <default_scene.hpp>
 
 using namespace sf;
 using namespace std;
@@ -58,94 +58,16 @@ namespace
         return body;
     }
 
-    struct Input_Status
-    {
-        bool  mouse_was_clicked = false;
-        float click_start_x = 0;
-        float click_start_y = 0;
-        float current_mouse_x = 0;
-        float current_mouse_y = 0;
-    };
 
-    // ------------------------------------------------------------------------------------------ //
-
-    bool process(Window& window)
-    {
-        Event event;
-
-        while (window.pollEvent(event))
-        {
-            switch (event.type)
-            {
-            case Event::KeyPressed:
-            {
-                switch (event.key.code)
-                {
-                case Keyboard::Left:
-                {
-                    break;
-                }
-                case Keyboard::Right:
-                {
-                    break;
-                }
-                case Keyboard::Up:
-                {
-                    break;
-                }
-                case Keyboard::Down:
-                {
-                    break;
-                }
-                }
-
-                break;
-            }
-            case Event::Closed:
-            {
-                return true;
-            }
-            }
-        }
-
-        return false;
-    }
+    
 }
 
 
 int main()
 {
-    constexpr auto window_width = 1800u;
-    constexpr auto window_height = 900u;
+    SceneDefault* scene = new SceneDefault();
 
-    RenderWindow window(VideoMode(window_width, window_height), "Box2D Forces", Style::Titlebar | Style::Close, ContextSettings(32));
+    scene->Run();
 
-    window.setVerticalSyncEnabled(true);
-
-
-    b2World physics_world{ b2Vec2{ 0, -10.f } };
-
-    constexpr float left = 0.01f;
-    constexpr float right = 18.0f;
-    constexpr float top = 9.0f;
-    constexpr float bottom = 0.01f;
-
-    create_edge(physics_world, b2_staticBody, left, bottom, right, bottom);
-    create_edge(physics_world, b2_staticBody, left, bottom, left, top);
-    create_edge(physics_world, b2_staticBody, left, top, right, top);
-    create_edge(physics_world, b2_staticBody, right, bottom, right, top);
-
-    create_edge(physics_world, b2_staticBody, left, top/2, right, bottom);
-
-    Car car(physics_world, b2_dynamicBody, 9, 4, 0.2f, 1, 0.1f);
-    
-    while (true)
-    {
-        physics_world.Step(1.0f / 60.0f, 8,4);
-
-        window.clear();
-        Render::render(physics_world, window, 100.0f);
-        window.display();
-    }
     return 0;
 }

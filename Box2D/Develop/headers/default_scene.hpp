@@ -15,11 +15,11 @@ namespace MKbox2D
 	{
 	private:
 
-		RenderWindow window;
+		RenderWindow* window;
 
 		std::vector<Object*> objectos;
 
-		b2World world;
+		b2World* world;
 
 		Render* render_system;
 
@@ -31,8 +31,6 @@ namespace MKbox2D
 
 	public:
 
-		static float horizontal;
-		static float vertical;
 
 		SceneDefault();
 
