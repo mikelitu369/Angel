@@ -17,13 +17,17 @@ namespace MKbox2D
 		Cube* pared2;
 
 		b2RevoluteJoint* clavo1;
-		b2RevoluteJoint* clavo2;
+		b2RevoluteJoint* clavo2;	
+
+		float recoveriSpeed;
 		
 	public:
 
 		Carretilla(b2World& physics_world, b2BodyType body_type, float x, float y, float width, float height, float slim);
 
-		void Update() {}
+		void Update();
+
+		Cube* get_base() { return base; }
 
 	};
 }

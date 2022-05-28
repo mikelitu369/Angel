@@ -40,23 +40,29 @@ namespace MKbox2D
 
 		speed2 = 5;
 
-		carretilla = new Carretilla(physics_world, body_type, x - width, y + 2*height, width*2, 0.5, 0.1);
+		carretilla = new Carretilla(physics_world, body_type, x - width, y + 2*height, width*2, 1, 0.1);
 
 		b2RevoluteJointDef* joint3 = new b2RevoluteJointDef();
 		joint3->bodyA = chasis->get_body();
 		joint3->bodyB = carretilla->get_body();
 		joint3->localAnchorA = chasis->get_shape()->m_centroid + b2Vec2(-width, 2*height);
-		joint3->localAnchorB = chasis->get_shape()->m_centroid + b2Vec2(-width, 2*height);
+		joint3->localAnchorB = carretilla->get_base()->get_shape()->m_centroid + b2Vec2(-width, 0);
 		joint3->collideConnected = false;
 		joint3->enableMotor = true;
+		joint3->enableLimit = true;
 		joint3->maxMotorTorque = 10000;
 		motor3 = (b2RevoluteJoint*)physics_world.CreateJoint(joint3);
 		motor3->SetMotorSpeed(0);
+		motor3->SetLimits(0, 3.14/2);
 
 	}
 
 	void Car::Update()
 	{
+
+		carretilla->Update();
+
+
 		float speed_fixed = Utils::clamp(Input::instance().horizontal * speed, -speed, speed);		
 
 		motor1->SetMotorSpeed(-speed_fixed);

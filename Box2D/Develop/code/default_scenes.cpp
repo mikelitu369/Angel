@@ -44,11 +44,9 @@ namespace MKbox2D
 
 
         Car* car = new Car(*world, b2_dynamicBody, 1.5, 7, 0.2f, 1, 0.1f);
-
-        Add_object(new Carretilla (*world, b2_dynamicBody, 9, 5, 5, 1, 0.1));
-
         Add_object(car);
         
+
     }
 
 
