@@ -12,7 +12,7 @@ namespace MKbox2D
 	class Object
 	{
 	protected:
-		b2Body* body;
+		b2Body* body = nullptr;
 		b2BodyDef body_definition;
 		b2FixtureDef body_fixture;
 

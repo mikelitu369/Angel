@@ -22,4 +22,9 @@ namespace MKbox2D
 
         body->CreateFixture(&body_fixture);
     }
+
+    void Edge::Move(b2Vec2 vector)
+    {
+        body->SetTransform(body->GetPosition() + vector, body->GetAngle());
+    }
 }

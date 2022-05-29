@@ -19,5 +19,7 @@ namespace MKbox2D
 		void Update() {}
 
 		b2EdgeShape* Get_shape() { return &shape; }
+
+		void Move(b2Vec2 vector);
 	};
 }

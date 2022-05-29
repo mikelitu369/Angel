@@ -5,6 +5,7 @@
 #include <car.hpp>
 #include <input.hpp>
 #include <edge.hpp>
+#include <platform.hpp>
 
 
 namespace MKbox2D
@@ -38,15 +39,22 @@ namespace MKbox2D
         Add_object(new Edge(*world, b2_staticBody, left + 4, top / 2 - 1, left + 7, top / 2 - 2));
         Add_object(new Edge(*world, b2_staticBody, left + 7, top / 2 - 2, left + 9, top / 2 - 2));
         Add_object(new Edge(*world, b2_staticBody, left + 9, top / 2 - 2, left + 11, top / 2 - 1.5));
+        Add_object(new Edge(*world, b2_staticBody, left + 11, top / 2 - 1.5, left + 11, 0));
 
         //Plataforma 2
         Add_object(new Edge(*world, b2_staticBody, right, top / 5, right - 4, top / 5));
+        Add_object(new Edge(*world, b2_staticBody, right - 4, top / 5, right - 4, 0));
 
-
+        //Coche
         Car* car = new Car(*world, b2_dynamicBody, 1.5, 7, 0.2f, 1, 0.1f);
         Add_object(car);
-        
 
+        //Ascensor
+        Add_object(new Platform(*world, b2_staticBody, car, left + 11, right - 4, 0, top / 5, 3.5 * top / 5));
+
+        //Plataforma 3
+        Add_object(new Edge(*world, b2_staticBody, left + 11, 3.5 * top / 5, left + 8, 3.5 * top / 5));
+        
     }
 
 

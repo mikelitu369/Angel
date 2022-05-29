@@ -31,5 +31,7 @@ namespace MKbox2D
 		Car(b2World& physics_world, b2BodyType body_type, float x, float y, float radius, float width, float height);
 
 		void Update();
+
+		b2Vec2 Get_position() { return body->GetPosition(); }
 	};
 }

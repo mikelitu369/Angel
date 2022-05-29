@@ -55,6 +55,8 @@ namespace MKbox2D
 		motor3->SetMotorSpeed(0);
 		motor3->SetLimits(0, 3.14/2);
 
+
+		body = chasis->get_body();
 	}
 
 	void Car::Update()
