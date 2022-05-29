@@ -53,6 +53,8 @@ namespace MKbox2D
 
         //Plataforma 3
         Add_object(new Edge(*world, b2_staticBody, left + 11, 3.5 * top / 5, left + 8, 3.5 * top / 5));
+        Add_object(new Edge(*world, b2_staticBody, left + 8, 3.5 * top / 5, left + 5, 3 * top / 5));
+        Add_object(new Edge(*world, b2_staticBody, left + 5, 3 * top / 5, left + 5, top));
 
         //Canasta
         Add_object(new Container(*world, car, right - 3, top / 2 + 1, 1, 1, 10));
