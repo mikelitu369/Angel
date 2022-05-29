@@ -38,7 +38,7 @@ namespace MKbox2D
 		motor2 = (b2RevoluteJoint*)physics_world.CreateJoint(joint2);
 		motor2->SetMotorSpeed(20);
 
-		speed2 = 5;
+		speed2 = 1 ;
 
 		carretilla = new Carretilla(physics_world, body_type, x - width, y + 2*height, width*2, 1, 0.1);
 

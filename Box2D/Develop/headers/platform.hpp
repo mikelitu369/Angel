@@ -22,7 +22,7 @@ namespace MKbox2D
 		Edge* pared1;
 		Edge* pared2;
 
-		float* activePosition;
+		float* activePosition = nullptr;
 
 		float speed;
 		float xref;

@@ -2,10 +2,10 @@
 
 
 #include <default_scene.hpp>
-#include <car.hpp>
 #include <input.hpp>
 #include <edge.hpp>
 #include <platform.hpp>
+#include <container.hpp>
 
 
 namespace MKbox2D
@@ -28,7 +28,6 @@ namespace MKbox2D
 
         //Margenes
         Add_object(new Edge(*world, b2_staticBody, left, bottom, left, top));
-        Add_object(new Edge(*world, b2_staticBody, left, top, right, top));
         Add_object(new Edge(*world, b2_staticBody, right, bottom, right, top));
 
         //Primera plataforma
@@ -46,7 +45,7 @@ namespace MKbox2D
         Add_object(new Edge(*world, b2_staticBody, right - 4, top / 5, right - 4, 0));
 
         //Coche
-        Car* car = new Car(*world, b2_dynamicBody, 1.5, 7, 0.2f, 1, 0.1f);
+        car = new Car(*world, b2_dynamicBody, 1.5, 7, 0.2f, 1, 0.1f);
         Add_object(car);
 
         //Ascensor
@@ -54,6 +53,9 @@ namespace MKbox2D
 
         //Plataforma 3
         Add_object(new Edge(*world, b2_staticBody, left + 11, 3.5 * top / 5, left + 8, 3.5 * top / 5));
+
+        //Canasta
+        Add_object(new Container(*world, car, right - 3, top / 2 + 1, 1, 1, 10));
         
     }
 

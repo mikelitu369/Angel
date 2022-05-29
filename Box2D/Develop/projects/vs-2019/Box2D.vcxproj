@@ -89,6 +89,7 @@
     <ClCompile Include="..\..\code\car.cpp" />
     <ClCompile Include="..\..\code\carretilla.cpp" />
     <ClCompile Include="..\..\code\circle.cpp" />
+    <ClCompile Include="..\..\code\container.cpp" />
     <ClCompile Include="..\..\code\cube.cpp" />
     <ClCompile Include="..\..\code\default_scenes.cpp" />
     <ClCompile Include="..\..\code\edge.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="..\..\headers\car.hpp" />
     <ClInclude Include="..\..\headers\carretilla.hpp" />
     <ClInclude Include="..\..\headers\circle.hpp" />
+    <ClInclude Include="..\..\headers\container.hpp" />
     <ClInclude Include="..\..\headers\cube.hpp" />
     <ClInclude Include="..\..\headers\default_scene.hpp" />
     <ClInclude Include="..\..\headers\edge.hpp" />

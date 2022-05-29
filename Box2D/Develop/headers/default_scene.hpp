@@ -7,6 +7,7 @@
 #include <vector>
 #include <object.hpp>
 #include <render.hpp>
+#include <car.hpp>
 
 
 namespace MKbox2D
@@ -28,6 +29,8 @@ namespace MKbox2D
 		void Update();
 
 		bool active = true;
+
+		Car* car;
 
 	public:
 
