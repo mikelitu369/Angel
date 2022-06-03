@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{91a710b2-a2c0-43c1-b6e3-e2814018b194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{f32b659c-76d1-45e3-a177-cb13fbaa7cfb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\camera_component.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\catapulta_controller.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\component.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\controller_component.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\controller_system.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\default_scene.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\entity.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\input_system.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\kernel.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\light_component.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\mesh_component.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\render_component.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\render_system.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\scene.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\scene_manager.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\suelo.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\system.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\task.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\transform.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\window.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\camera_component.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\controller_system.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\default_scene.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\entity.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\input_system.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\kernel.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\light_component.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\main.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mesh_component.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\render_system.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\scene_manager.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\suelo.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\transform.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Window.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\catapulta_controller.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

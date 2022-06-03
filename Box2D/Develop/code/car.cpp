@@ -22,7 +22,7 @@ namespace MKbox2D
 		joint1->localAnchorB = wheel1->get_shape()->m_p;
 		joint1->collideConnected = false;
 		joint1->enableMotor = true;
-		joint1->maxMotorTorque = 10000;
+		joint1->maxMotorTorque = 1000;
 		motor1 = (b2RevoluteJoint*)physics_world.CreateJoint(joint1);
 		motor1->SetMotorSpeed(20);
 		
@@ -34,7 +34,7 @@ namespace MKbox2D
 		joint2->localAnchorB = wheel2->get_shape()->m_p;
 		joint2->collideConnected = false;
 		joint2->enableMotor = true;
-		joint2->maxMotorTorque = 10000;
+		joint2->maxMotorTorque = 1000;
 		motor2 = (b2RevoluteJoint*)physics_world.CreateJoint(joint2);
 		motor2->SetMotorSpeed(20);
 
@@ -50,7 +50,7 @@ namespace MKbox2D
 		joint3->collideConnected = false;
 		joint3->enableMotor = true;
 		joint3->enableLimit = true;
-		joint3->maxMotorTorque = 10000;
+		joint3->maxMotorTorque = 1000;
 		motor3 = (b2RevoluteJoint*)physics_world.CreateJoint(joint3);
 		motor3->SetMotorSpeed(0);
 		motor3->SetLimits(0, 3.14/2);

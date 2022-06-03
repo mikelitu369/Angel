@@ -8,7 +8,7 @@
 #include <component.hpp>
 
 
-namespace MKengine
+namespace MKatapulta
 {
 	class Transform;
 	class Scene;
@@ -32,7 +32,6 @@ namespace MKengine
 
 		Entity(Scene* scene);
 		Entity(Scene* scene, Transform* parent);
-
 		Entity(std::string& id, Scene* scene);
 		Entity(std::string& id, Scene* scene, Transform* parent);
 
