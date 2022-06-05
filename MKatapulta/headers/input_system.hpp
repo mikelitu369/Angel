@@ -11,6 +11,7 @@ namespace MKatapulta
 	{
 		int horizontal = 0;
 		int vertical = 0;
+		bool action = false;
 
 	public:
 
@@ -28,6 +29,7 @@ namespace MKatapulta
 
 		int get_horizontal() { return horizontal; }
 		int get_vertical() { return vertical; }
+		bool get_action() { if (action) { action = false; return true; } return false; }
 
 	};
 }

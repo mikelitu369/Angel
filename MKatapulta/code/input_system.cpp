@@ -35,6 +35,9 @@ namespace MKatapulta
 				case SDLK_a:
 					horizontal -= 1;
 					break;
+				case SDLK_SPACE:
+					action = true;
+					break;
 				}
 
 				break;
@@ -58,6 +61,9 @@ namespace MKatapulta
 
 				case SDLK_a:
 					horizontal += 1;
+					break;
+				case SDLK_SPACE:
+					action = false;
 					break;
 				}
 

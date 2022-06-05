@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\bloque.hpp" />
+    <ClInclude Include="headers\bullet.hpp" />
     <ClInclude Include="headers\camera_component.hpp" />
     <ClInclude Include="headers\catapulta_controller.hpp" />
     <ClInclude Include="headers\component.hpp" />
@@ -31,6 +33,7 @@
     <ClInclude Include="headers\key.hpp" />
     <ClInclude Include="headers\light_component.hpp" />
     <ClInclude Include="headers\mesh_component.hpp" />
+    <ClInclude Include="headers\pared.hpp" />
     <ClInclude Include="headers\platform.hpp" />
     <ClInclude Include="headers\puerta_controller.hpp" />
     <ClInclude Include="headers\render_component.hpp" />
@@ -44,6 +47,8 @@
     <ClInclude Include="headers\window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code\bloque.cpp" />
+    <ClCompile Include="code\bullet.cpp" />
     <ClCompile Include="code\camera_component.cpp" />
     <ClCompile Include="code\catapulta_controller.cpp" />
     <ClCompile Include="code\controller_system.cpp" />
@@ -55,6 +60,7 @@
     <ClCompile Include="code\light_component.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\mesh_component.cpp" />
+    <ClCompile Include="code\pared.cpp" />
     <ClCompile Include="code\platform.cpp" />
     <ClCompile Include="code\puerta_controller.cpp" />
     <ClCompile Include="code\render_system.cpp" />

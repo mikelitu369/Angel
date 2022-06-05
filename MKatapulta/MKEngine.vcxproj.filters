@@ -78,6 +78,15 @@
     <ClInclude Include="headers\key.hpp">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="headers\bullet.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\pared.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\bloque.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\camera_component.cpp">
@@ -135,6 +144,15 @@
       <Filter>code</Filter>
     </ClCompile>
     <ClCompile Include="code\key.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\bullet.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\pared.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\bloque.cpp">
       <Filter>code</Filter>
     </ClCompile>
   </ItemGroup>

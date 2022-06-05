@@ -37,19 +37,19 @@ namespace MKatapulta
 		controller_components.push_back(new_component);
 	}	
 
-	Suelo_Controller* Controller_System::create_suelo(Transform* ref)
+	Suelo_Controller* Controller_System::create_suelo(Transform* ref, Bullet_Controller* bullet)
 	{
 
-		Suelo_Controller* component = new Suelo_Controller(ref);
+		Suelo_Controller* component = new Suelo_Controller(ref, bullet);
 		this->add_controller_component(component);
 
 		return component;
 	}
 
-	Catapulta_Controller* Controller_System::create_catapulta_controller(Transform* palo)
+	Catapulta_Controller* Controller_System::create_catapulta_controller(Transform* palo, Bullet_Controller* bullet)
 	{
 
-		Catapulta_Controller* component = new Catapulta_Controller(palo);
+		Catapulta_Controller* component = new Catapulta_Controller(palo, bullet);
 		this->add_controller_component(component);
 
 		return component;
@@ -77,6 +77,33 @@ namespace MKatapulta
 	{
 
 		Key_Controller* component = new Key_Controller(catapulta, platform, puerta, cubo);
+		this->add_controller_component(component);
+
+		return component;
+	}
+
+	Bullet_Controller* Controller_System::create_bullet(Transform* parent, float altura)
+	{
+
+		Bullet_Controller* component = new Bullet_Controller(parent, altura);
+		this->add_controller_component(component);
+
+		return component;
+	}
+
+	Pared_Controller* Controller_System::create_pared(Bullet_Controller* bullet)
+	{
+
+		Pared_Controller* component = new Pared_Controller(bullet);
+		this->add_controller_component(component);
+
+		return component;
+	}
+
+	Bloque_Controller* Controller_System::create_bloque(Pared_Controller* pared)
+	{
+
+		Bloque_Controller* component = new Bloque_Controller(pared);
 		this->add_controller_component(component);
 
 		return component;

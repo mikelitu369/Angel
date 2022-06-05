@@ -24,5 +24,19 @@ namespace MKatapulta
 			catapulta->set_local_position(new_position);
 		}
 
+		Transform* transform_bullet = bullet->get_transform();
+
+		if (transform_bullet->Position().x > transform->Position().x - transform->Scale().x / 2 &&
+			transform_bullet->Position().x < transform->Position().x + transform->Scale().x / 2 &&
+			transform_bullet->Position().z > transform->Position().z - transform->Scale().z / 2 &&
+			transform_bullet->Position().z < transform->Position().z + transform->Scale().z / 2 &&
+			transform_bullet->Position().y < transform->Position().y + transform->Scale().y &&
+			transform_bullet->Position().y > transform->Position().y)
+		{
+			glm::vec3 new_position(transform_bullet->Position().x, transform->Position().y + 0.1 + transform->Scale().y, transform_bullet->Position().z);
+			transform_bullet->set_local_position(new_position);
+			bullet->swapy();
+		}
+
 	}
 }
