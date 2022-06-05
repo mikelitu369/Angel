@@ -69,6 +69,15 @@
     <ClInclude Include="headers\window.hpp">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="headers\puerta_controller.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\platform.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\key.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\camera_component.cpp">
@@ -117,6 +126,15 @@
       <Filter>code</Filter>
     </ClCompile>
     <ClCompile Include="code\catapulta_controller.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\puerta_controller.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\platform.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="code\key.cpp">
       <Filter>code</Filter>
     </ClCompile>
   </ItemGroup>

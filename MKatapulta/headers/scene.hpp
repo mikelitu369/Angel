@@ -59,7 +59,7 @@ namespace MKatapulta
 
 		virtual void reset() {}
 
-		void close() { kernel->stop_kernel(); }
+		void close();
 	};
 
 

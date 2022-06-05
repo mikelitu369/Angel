@@ -12,13 +12,10 @@ using namespace std;
 
 namespace MKatapulta
 {
-
 	Camera_Component::Camera_Component()
 	{
 
-		camera.reset(new Camera(20.f, 1.f, 50.f, 1.f));
+		camera.reset(new Camera(20.f, 1.f, 100.f, 1.f));
 
 	}
-
-
 }

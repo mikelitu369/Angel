@@ -46,10 +46,37 @@ namespace MKatapulta
 		return component;
 	}
 
-	Catapulta_Controller* Controller_System::create_catapulta_controller(Transform* liebre, Transform* palo)
+	Catapulta_Controller* Controller_System::create_catapulta_controller(Transform* palo)
 	{
 
-		Catapulta_Controller* component = new Catapulta_Controller(liebre, palo);
+		Catapulta_Controller* component = new Catapulta_Controller(palo);
+		this->add_controller_component(component);
+
+		return component;
+	}
+
+	Puerta_Controller* Controller_System::create_puerta(Transform* muro1, Transform* muro2)
+	{
+
+		Puerta_Controller* component = new Puerta_Controller(muro1, muro2);
+		this->add_controller_component(component);
+
+		return component;
+	}
+
+	Platform_Controller* Controller_System::create_platform(Transform* catapulta)
+	{
+
+		Platform_Controller* component = new Platform_Controller(catapulta);
+		this->add_controller_component(component);
+
+		return component;
+	}
+
+	Key_Controller* Controller_System::create_key(Transform* catapulta, Platform_Controller* platform, Puerta_Controller* puerta, Transform* cubo)
+	{
+
+		Key_Controller* component = new Key_Controller(catapulta, platform, puerta, cubo);
 		this->add_controller_component(component);
 
 		return component;

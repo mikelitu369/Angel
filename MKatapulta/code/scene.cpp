@@ -68,4 +68,16 @@ namespace MKatapulta
 		setup();
 		init();
 	}
+
+	void Scene::close()
+	{
+		kernel->stop_kernel();
+
+		for (auto& entity : entities)
+		{
+			entity.second = NULL;
+			delete entity.second;
+		}
+
+	}
 }

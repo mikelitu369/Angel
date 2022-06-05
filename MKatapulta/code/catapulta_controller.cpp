@@ -1,14 +1,14 @@
 
 #include <catapulta_controller.hpp>
 #include <input_system.hpp>
+#include <scene_manager.hpp>
 
 
 namespace MKatapulta
 {
 
-	Catapulta_Controller::Catapulta_Controller(Transform* liebre, Transform* palo)
+	Catapulta_Controller::Catapulta_Controller(Transform* palo)
 	{
-		this->liebre = liebre;
 		this->palo = palo;
 
 		speed = 0.05;
@@ -31,6 +31,6 @@ namespace MKatapulta
 		position.y -= gravity_speed;
 		transform->set_local_position(position);
 
-		 
+		if (transform->localPosition().y < -10) Scene_manager::instance().reset();
 	}
 }

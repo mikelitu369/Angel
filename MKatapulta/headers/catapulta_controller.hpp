@@ -13,14 +13,13 @@ namespace MKatapulta
 	private:
 		
 		Transform* palo;
-		Transform* liebre;
 		float speed;
 		float rotation_speed;
 		float gravity_speed;
 
 	public:
 
-		Catapulta_Controller(Transform* liebre, Transform* palo);
+		Catapulta_Controller(Transform* palo);
 
 		void start() {}
 		void update();

@@ -28,8 +28,11 @@
     <ClInclude Include="headers\entity.hpp" />
     <ClInclude Include="headers\input_system.hpp" />
     <ClInclude Include="headers\kernel.hpp" />
+    <ClInclude Include="headers\key.hpp" />
     <ClInclude Include="headers\light_component.hpp" />
     <ClInclude Include="headers\mesh_component.hpp" />
+    <ClInclude Include="headers\platform.hpp" />
+    <ClInclude Include="headers\puerta_controller.hpp" />
     <ClInclude Include="headers\render_component.hpp" />
     <ClInclude Include="headers\render_system.hpp" />
     <ClInclude Include="headers\scene.hpp" />
@@ -48,9 +51,12 @@
     <ClCompile Include="code\entity.cpp" />
     <ClCompile Include="code\input_system.cpp" />
     <ClCompile Include="code\kernel.cpp" />
+    <ClCompile Include="code\key.cpp" />
     <ClCompile Include="code\light_component.cpp" />
     <ClCompile Include="code\main.cpp" />
     <ClCompile Include="code\mesh_component.cpp" />
+    <ClCompile Include="code\platform.cpp" />
+    <ClCompile Include="code\puerta_controller.cpp" />
     <ClCompile Include="code\render_system.cpp" />
     <ClCompile Include="code\scene.cpp" />
     <ClCompile Include="code\scene_manager.cpp" />

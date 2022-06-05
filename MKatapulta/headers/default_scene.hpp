@@ -18,6 +18,7 @@ namespace MKatapulta
 	private:
 		
 		std::vector<glm::vec3> posiciones_originales;
+		std::vector<glm::vec3> rotaciones_originales;
 		std::vector<Entity*> entidades_reset;
 
 	public:
