@@ -11,14 +11,22 @@ namespace MKExcel
 	class BackupManager
 	{
 	protected:
-		std::string basePath;
-		std::string backupPath;
+		static std::string basePath;
+		static std::string backupPath;
 		BackupListManager* listManager;
 
 	public:
-		BackupManager(std::string base, std::string backup);
+		static std::string keys;
+		static BackupManager& instance()
+		{
+			static BackupManager backupManager;
+			return backupManager;
+		}
+		static void SetBackupManager(std::string base, std::string backup);
+		BackupManager();
 		void NewBackup();
 		std::string BackupList();
+		std::string LastBackup();
 		void RestoreBackup(std::string key);
 	};
 }

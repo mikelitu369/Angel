@@ -21,4 +21,3 @@ namespace MKExcel
         return first;
     }
 }
-

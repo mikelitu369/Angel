@@ -11,7 +11,11 @@
 
 using namespace MKExcel;
 
-extern "C" EXPORT BackupManager * CreateBackupManager(std::string basePath, std::string backupPath);
-extern "C" EXPORT void NewBackup(BackupManager * manager);
-extern "C" EXPORT std::string BackupList(BackupManager * manager);
-extern "C" EXPORT void RestoreBackup(BackupManager * manager, std::string id);
+std::string BackupManager::basePath = "";
+std::string BackupManager::backupPath = "";
+std::string BackupManager::keys = "";
+
+extern "C" EXPORT void CreateBackupManager(char* basePath, char* backupPath);
+extern "C" EXPORT void NewBackup();
+extern "C" EXPORT char* BackupList();
+extern "C" EXPORT void RestoreBackup(char* id);

@@ -15,9 +15,9 @@
 
 namespace MKExcel
 {
-	BackupListManager::BackupListManager(std::string path)
+	BackupListManager::BackupListManager(std::string* path)
 	{
-		this->path = path + "/backuplist.txt";
+		this->path = path;
 	}
 
 	std::string BackupListManager::GenerateKey()
@@ -34,7 +34,7 @@ namespace MKExcel
 	{
 		std::ofstream list;
 		std::string oldContent;
-		list.open(path, std::ios_base::app);
+		list.open(*path + "/backuplist.txt", std::ios_base::app);
 		list << key << ",";		
 		list.close();
 	}
@@ -43,12 +43,13 @@ namespace MKExcel
 	{
 		std::string keys;
 		std::fstream list;
-		list.open(path, std::ios::in);
+		list.open(*path + "/backuplist.txt", std::ios::in);
 		if (list.is_open())
 		{
 			while (getline(list, keys)) {}
 			list.close();
 		}
+		if (keys.size() == 0) return "empty";
 		return keys;
 	}
 

@@ -5,25 +5,37 @@
 
 namespace MKExcel
 {
-	BackupManager::BackupManager(std::string base, std::string backup)
+	void BackupManager::SetBackupManager(std::string base, std::string backup)
 	{
-		basePath = base;
-		backupPath = backup;
-		listManager = new BackupListManager(backup);
+		BackupManager::basePath = base;
+		BackupManager::backupPath = backup;
+	}
+
+	BackupManager::BackupManager()
+	{		
+		listManager = new BackupListManager(&backupPath);
 	}
 
 	void BackupManager::NewBackup()
 	{
 		std::string key = listManager->GenerateKey();
 
-		std::filesystem::copy(basePath, backupPath + "/" + key);
+		if (!std::filesystem::exists(backupPath))
+		{
+			std::filesystem::create_directory(backupPath);
+		}
+
+		const auto copyOptions = std::filesystem::copy_options::recursive;
+
+		std::filesystem::copy(basePath, backupPath + "/" + key, copyOptions);
 
 		listManager->AddKey(key);
 	}
 
 	std::string BackupManager::BackupList()
 	{
-		return listManager->GetAllKeys();
+		keys = listManager->GetAllKeys();
+		return keys;
 	}
 
 	void BackupManager::RestoreBackup(std::string key)
@@ -34,5 +46,10 @@ namespace MKExcel
 			std::filesystem::copy(backupPath + "/" + key, basePath);
 			listManager->AddKey(key);
 		}
+	}
+
+	std::string BackupManager::LastBackup()
+	{
+		return listManager->GetLastKey();
 	}
 }
